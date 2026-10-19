@@ -159,13 +159,13 @@ export function Contact() {
         subtitle="Get in touch with me anytime."
       />
       <Card className="overflow-hidden border-border/60">
-        <div className="grid lg:grid-cols-[0.85fr_1.15fr]">
+        <div className="grid min-w-0 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.5 }}
-            className="flex flex-col justify-center space-y-7 p-6 sm:p-8 lg:justify-start lg:p-10 lg:pt-8"
+            className="flex min-w-0 flex-col justify-center space-y-7 p-6 sm:p-8 lg:justify-start lg:p-10 lg:pt-8"
           >
             <div>
               <h3 className="max-w-md text-3xl font-bold tracking-tight text-balance md:text-4xl">
@@ -238,9 +238,9 @@ export function Contact() {
                 })}
             </motion.div>
 
-            <p className="flex items-center gap-2 text-muted-foreground">
+            <p className="flex min-w-0 items-center gap-2 text-muted-foreground">
               <MapPin className="h-5 w-5 shrink-0" />
-              {siteConfig.location}
+              <span className="min-w-0 break-words">{siteConfig.location}</span>
             </p>
           </motion.div>
 
@@ -249,7 +249,7 @@ export function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.5 }}
-            className="border-t border-border/60 bg-background/30 p-6 sm:p-8 lg:border-l lg:border-t-0 lg:p-10"
+            className="min-w-0 border-t border-border/60 bg-background/30 p-6 sm:p-8 lg:border-l lg:border-t-0 lg:p-10"
           >
               {status === 'success' ? (
                 <div className="flex flex-col items-center justify-center gap-4 py-12 text-center">
@@ -299,11 +299,11 @@ export function Contact() {
                   </motion.div>
 
                   <motion.div
-                    className="grid gap-5 sm:grid-cols-2"
+                    className="grid min-w-0 gap-5 sm:grid-cols-2"
                     variants={contactStagger}
                   >
                     <motion.div
-                      className="space-y-2 transition-transform duration-200 focus-within:scale-[1.01]"
+                      className="min-w-0 space-y-2 transition-transform duration-200 focus-within:scale-[1.01]"
                       variants={contactItem}
                     >
                       <Label htmlFor="name" className="text-base font-semibold">Full Name</Label>
@@ -324,7 +324,7 @@ export function Contact() {
                     </motion.div>
 
                     <motion.div
-                      className="space-y-2 transition-transform duration-200 focus-within:scale-[1.01]"
+                      className="min-w-0 space-y-2 transition-transform duration-200 focus-within:scale-[1.01]"
                       variants={contactItem}
                     >
                       <Label htmlFor="email" className="text-base font-semibold">Email</Label>
