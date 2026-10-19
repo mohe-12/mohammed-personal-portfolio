@@ -73,8 +73,22 @@ export function Navbar() {
     };
   }, [mobileOpen]);
 
-  const handleNav = () => {
+  const handleNav = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!mobileOpen) return;
+
+    event.preventDefault();
+    const href = event.currentTarget.hash;
+    const target = document.getElementById(href.slice(1));
+
+    if (window.location.hash !== href) {
+      window.history.pushState(null, '', href);
+    }
+
     setMobileOpen(false);
+
+    window.requestAnimationFrame(() => {
+      target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
   };
 
   return (
