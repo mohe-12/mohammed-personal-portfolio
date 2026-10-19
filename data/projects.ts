@@ -42,8 +42,8 @@ export const projects: Project[] = [
     title: 'Personal Portfolio',
     description:
       'Personal Portfolio website using Next.js, React.js, TypeScript, and Tailwind CSS.',
-    githubUrl: null,
-    liveUrl: null,
+    githubUrl: 'https://github.com/mohe-12/mohammed-personal-portfolio',
+    liveUrl: 'https://mohammed-personal-portfolio.vercel.app/',
     previewImage: '/images/portfolio.png',
     accentFrom: '#FF2D20',
     accentTo: '#6366F1',
