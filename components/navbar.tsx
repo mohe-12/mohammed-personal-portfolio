@@ -26,8 +26,15 @@ export function Navbar() {
       return;
     }
 
-    const headerOffset = headerRef.current?.offsetHeight ?? 72;
-    const top = target.getBoundingClientRect().top + window.scrollY - headerOffset - 12;
+    const heading = targetId === 'home' ? null : target.querySelector('h1, h2');
+    const scrollTarget = heading?.parentElement ?? target;
+    const headerOffset =
+      headerRef.current?.querySelector('nav')?.getBoundingClientRect().height ?? 64;
+    const top =
+      scrollTarget.getBoundingClientRect().top +
+      window.scrollY -
+      headerOffset -
+      12;
 
     window.scrollTo({ top, behavior: 'smooth' });
   };
@@ -107,9 +114,9 @@ export function Navbar() {
       window.history.pushState(null, '', href);
     }
 
-    window.setTimeout(() => {
+    window.requestAnimationFrame(() => {
       scrollToSection(href);
-    }, 80);
+    });
   };
 
   return (
