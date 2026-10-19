@@ -63,7 +63,7 @@ export function Section({
     <section
       id={id}
       className={cn(
-        'relative scroll-mt-20 px-4 py-20 sm:px-6 md:py-28 lg:px-8',
+        'relative px-4 py-20 sm:px-6 md:py-28 lg:px-8',
         className,
       )}
     >
