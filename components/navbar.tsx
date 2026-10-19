@@ -73,9 +73,35 @@ export function Navbar() {
     };
   }, [mobileOpen]);
 
-  const handleNav = () => {
+  
+const handleNav = (event: React.MouseEvent<HTMLAnchorElement>) => {
+  const href = event.currentTarget.getAttribute('href');
+
+  if (!href?.startsWith('#')) return;
+
+  const target = document.getElementById(href.slice(1));
+  if (!target) {
+    console.warn(`Navbar target not found: ${href}`);
+    setMobileOpen(false);
+    return;
+  }
+  event.preventDefault();
   setMobileOpen(false);
+  if (window.location.hash !== href) {
+    window.history.pushState(null, '', href);
+  }
+  const navbarHeight = headerRef.current?.offsetHeight ?? 64;
+  const targetTop =
+    target.getBoundingClientRect().top +
+    window.scrollY -
+    navbarHeight -
+    8;
+  window.scrollTo({
+    top: Math.max(0, targetTop),
+    behavior: 'smooth',
+  });
 };
+
 
   return (
     <header
