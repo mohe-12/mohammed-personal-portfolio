@@ -15,29 +15,6 @@ export function Navbar() {
   const [underlinedLink, setUnderlinedLink] = useState<string | null>(null);
   const headerRef = useRef<HTMLElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
-  const bodyOverflowRef = useRef('');
-
-  const scrollToSection = (href: string) => {
-    const targetId = href.replace('#', '');
-    const target = document.getElementById(targetId);
-
-    if (!target) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      return;
-    }
-
-    const heading = targetId === 'home' ? null : target.querySelector('h1, h2');
-    const scrollTarget = heading?.parentElement ?? target;
-    const headerOffset =
-      headerRef.current?.querySelector('nav')?.getBoundingClientRect().height ?? 64;
-    const top =
-      scrollTarget.getBoundingClientRect().top +
-      window.scrollY -
-      headerOffset -
-      12;
-
-    window.scrollTo({ top, behavior: 'smooth' });
-  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -63,16 +40,6 @@ export function Navbar() {
     });
     return () => observer.disconnect();
   }, []);
-
-  useEffect(() => {
-    if (!mobileOpen) return;
-
-    bodyOverflowRef.current = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = bodyOverflowRef.current;
-    };
-  }, [mobileOpen]);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -106,17 +73,8 @@ export function Navbar() {
     };
   }, [mobileOpen]);
 
-  const handleNav = (href: string) => {
+  const handleNav = () => {
     setMobileOpen(false);
-    document.body.style.overflow = bodyOverflowRef.current;
-
-    if (window.location.hash !== href) {
-      window.history.pushState(null, '', href);
-    }
-
-    window.requestAnimationFrame(() => {
-      scrollToSection(href);
-    });
   };
 
   return (
@@ -132,10 +90,7 @@ export function Navbar() {
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-2 px-4 sm:px-6 lg:px-8">
         <a
           href="#home"
-          onClick={(e) => {
-            e.preventDefault();
-            handleNav('#home');
-          }}
+          onClick={handleNav}
           className="group flex shrink-0 items-center gap-1.5 whitespace-nowrap text-sm font-extrabold tracking-tight transition-opacity hover:opacity-90 sm:text-lg"
           aria-label="Mohammed Hasen — home"
         >
@@ -158,10 +113,7 @@ export function Navbar() {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNav(link.href);
-                  }}
+                  onClick={handleNav}
                   onPointerEnter={() => setUnderlinedLink(link.href)}
                   onFocus={() => setUnderlinedLink(link.href)}
                   onBlur={() => setUnderlinedLink(null)}
@@ -238,10 +190,7 @@ export function Navbar() {
                   <li key={link.href}>
                     <a
                       href={link.href}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleNav(link.href);
-                      }}
+                      onClick={handleNav}
                       className={cn(
                         'block rounded-lg px-4 py-3 text-base font-medium transition-colors',
                         active
