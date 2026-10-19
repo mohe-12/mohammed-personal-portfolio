@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -74,12 +75,16 @@
     --soft-indigo: 190 95% 60%;
     --cyan-accent: 190 95% 50%;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-geist), Arial, sans-serif;
@@ -87,6 +92,7 @@
     letter-spacing: -0.01em;
     line-height: 1.6;
   }
+
   h1,
   h2,
   h3,
@@ -97,14 +103,12 @@
     letter-spacing: -0.025em;
     line-height: 1.15;
   }
+
   button,
   input,
   select,
   textarea {
     font: inherit;
-  }
-  html {
-    scroll-behavior: smooth;
   }
 }
 
@@ -112,15 +116,22 @@
   .text-balance {
     text-wrap: balance;
   }
+
   .bg-grid {
-    background-image: linear-gradient(
+    background-image:
+      linear-gradient(
         to right,
         hsl(var(--border) / 0.4) 1px,
         transparent 1px
       ),
-      linear-gradient(to bottom, hsl(var(--border) / 0.4) 1px, transparent 1px);
+      linear-gradient(
+        to bottom,
+        hsl(var(--border) / 0.4) 1px,
+        transparent 1px
+      );
     background-size: 48px 48px;
   }
+
   .bg-dots {
     background-image: radial-gradient(
       hsl(var(--border) / 0.6) 1px,
@@ -128,10 +139,12 @@
     );
     background-size: 24px 24px;
   }
+
   .glass {
     backdrop-filter: blur(12px) saturate(160%);
     -webkit-backdrop-filter: blur(12px) saturate(160%);
   }
+
   .gradient-text {
     @apply bg-clip-text text-transparent;
     background-image: linear-gradient(
@@ -140,15 +153,18 @@
       hsl(var(--accent))
     );
   }
+
   .gradient-border {
     position: relative;
     background-clip: padding-box;
   }
+
   .overview-card-decoration {
     position: relative;
     isolation: isolate;
     overflow: hidden;
   }
+
   .overview-card-decoration::before {
     content: '';
     position: absolute;
@@ -166,10 +182,12 @@
     );
     pointer-events: none;
   }
+
   .overview-card-decoration > * {
     position: relative;
     z-index: 1;
   }
+
   .skills-card-glow::after,
   .overview-card-glow::after {
     content: '';
@@ -194,11 +212,13 @@
       opacity 200ms ease,
       box-shadow 200ms ease;
   }
+
   .skills-card-glow:hover::after,
   .overview-card-glow:hover::after {
     box-shadow: 0 0 18px hsl(var(--primary) / 0.65);
     opacity: 1;
   }
+
   .gradient-border::before {
     content: '';
     position: absolute;
@@ -210,23 +230,37 @@
       hsl(var(--primary) / 0.6),
       hsl(var(--accent) / 0.4)
     );
-    -webkit-mask: linear-gradient(#fff 0 0) content-box,
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
       linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
   }
-.cursor-tilt-card {
-  perspective: 900px;
+
+  .cursor-tilt-card {
+    perspective: 900px;
+  }
+
+  .cursor-tilt-card > * {
+    transform:
+      rotateX(var(--tilt-x, 0deg))
+      rotateY(var(--tilt-y, 0deg))
+      translate3d(
+        var(--shift-x, 0px),
+        var(--shift-y, 0px),
+        0
+      );
+    transition:
+      transform 180ms ease-out,
+      border-color 200ms ease,
+      box-shadow 200ms ease;
+  }
 }
-.cursor-tilt-card > * {
-  transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg))
-    translate3d(var(--shift-x, 0px), var(--shift-y, 0px), 0);
-  transition:
-    transform 180ms ease-out,
-    border-color 200ms ease,
-    box-shadow 200ms ease;
-}
+
+/* Keep section headings visible below the fixed navbar */
+section[id] {
+  scroll-margin-top: 5rem;
 }
 
 /* Custom scrollbar */
@@ -234,14 +268,17 @@
   width: 10px;
   height: 10px;
 }
+
 ::-webkit-scrollbar-track {
   background: hsl(var(--background));
 }
+
 ::-webkit-scrollbar-thumb {
   background: hsl(var(--muted-foreground) / 0.4);
   border-radius: 9999px;
   border: 2px solid hsl(var(--background));
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--muted-foreground) / 0.7);
 }
@@ -252,6 +289,7 @@
   color: hsl(var(--foreground));
 }
 
+/* Accessibility: respect reduced-motion preferences */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
