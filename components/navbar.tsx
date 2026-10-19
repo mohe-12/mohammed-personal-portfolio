@@ -17,6 +17,21 @@ export function Navbar() {
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const bodyOverflowRef = useRef('');
 
+  const scrollToSection = (href: string) => {
+    const targetId = href.replace('#', '');
+    const target = document.getElementById(targetId);
+
+    if (!target) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    const headerOffset = headerRef.current?.offsetHeight ?? 72;
+    const top = target.getBoundingClientRect().top + window.scrollY - headerOffset - 12;
+
+    window.scrollTo({ top, behavior: 'smooth' });
+  };
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
@@ -85,19 +100,16 @@ export function Navbar() {
   }, [mobileOpen]);
 
   const handleNav = (href: string) => {
-    if (mobileOpen) {
-      document.body.style.overflow = bodyOverflowRef.current;
-    }
     setMobileOpen(false);
+    document.body.style.overflow = bodyOverflowRef.current;
+
     if (window.location.hash !== href) {
       window.history.pushState(null, '', href);
     }
-    const section = document.getElementById(href.slice(1));
-    if (section) {
-      window.requestAnimationFrame(() => {
-        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    }
+
+    window.setTimeout(() => {
+      scrollToSection(href);
+    }, 80);
   };
 
   return (
