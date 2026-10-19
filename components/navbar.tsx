@@ -15,6 +15,7 @@ export function Navbar() {
   const [underlinedLink, setUnderlinedLink] = useState<string | null>(null);
   const headerRef = useRef<HTMLElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const pendingMobileHref = useRef<string | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -73,35 +74,20 @@ export function Navbar() {
     };
   }, [mobileOpen]);
 
-  
-const handleNav = (event: React.MouseEvent<HTMLAnchorElement>) => {
-  const href = event.currentTarget.getAttribute('href');
+  const handleNav = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!mobileOpen) return;
 
-  if (!href?.startsWith('#')) return;
+    event.preventDefault();
+    const href = event.currentTarget.hash;
+    const target = document.getElementById(href.slice(1));
+    pendingMobileHref.current = href;
 
-  const target = document.getElementById(href.slice(1));
-  if (!target) {
-    console.warn(`Navbar target not found: ${href}`);
+    if (window.location.hash !== href) {
+      window.history.pushState(null, '', href);
+    }
+
     setMobileOpen(false);
-    return;
-  }
-  event.preventDefault();
-  setMobileOpen(false);
-  if (window.location.hash !== href) {
-    window.history.pushState(null, '', href);
-  }
-  const navbarHeight = headerRef.current?.offsetHeight ?? 64;
-  const targetTop =
-    target.getBoundingClientRect().top +
-    window.scrollY -
-    navbarHeight -
-    8;
-  window.scrollTo({
-    top: Math.max(0, targetTop),
-    behavior: 'smooth',
-  });
-};
-
+  };
 
   return (
     <header
@@ -198,7 +184,18 @@ const handleNav = (event: React.MouseEvent<HTMLAnchorElement>) => {
         </div>
       </nav>
 
-      <AnimatePresence>
+      <AnimatePresence
+        onExitComplete={() => {
+          const href = pendingMobileHref.current;
+          if (!href) return;
+
+          pendingMobileHref.current = null;
+          document.getElementById(href.slice(1))?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          });
+        }}
+      >
         {mobileOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
