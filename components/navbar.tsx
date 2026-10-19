@@ -15,6 +15,7 @@ export function Navbar() {
   const [underlinedLink, setUnderlinedLink] = useState<string | null>(null);
   const headerRef = useRef<HTMLElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const bodyOverflowRef = useRef('');
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -42,10 +43,12 @@ export function Navbar() {
   }, []);
 
   useEffect(() => {
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = mobileOpen ? 'hidden' : previousOverflow;
+    if (!mobileOpen) return;
+
+    bodyOverflowRef.current = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
     return () => {
-      document.body.style.overflow = previousOverflow;
+      document.body.style.overflow = bodyOverflowRef.current;
     };
   }, [mobileOpen]);
 
@@ -82,12 +85,19 @@ export function Navbar() {
   }, [mobileOpen]);
 
   const handleNav = (href: string) => {
+    if (mobileOpen) {
+      document.body.style.overflow = bodyOverflowRef.current;
+    }
     setMobileOpen(false);
     if (window.location.hash !== href) {
       window.history.pushState(null, '', href);
     }
-    const el = document.querySelector(href);
-    el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const section = document.getElementById(href.slice(1));
+    if (section) {
+      window.requestAnimationFrame(() => {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
   };
 
   return (
