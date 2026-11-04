@@ -26,7 +26,7 @@ export function Projects() {
             <span className="gradient-text">Projects</span>
           </>
         }
-        subtitle="A showcase of my work, highlighting my skills and experience in web development."
+        subtitle="A showcase of my work, highlighting my skills and experience in software development."
       />
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -52,11 +52,23 @@ export function Projects() {
                   </div>
 
                   <CardContent className="flex flex-1 flex-col p-5">
-                    <span className="text-xs font-bold text-primary/70">
-                      {project.number}
-                    </span>
+                    {/* Number + status on one row */}
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-xs font-bold text-primary/70">
+                        {project.number}
+                      </span>
+                      <span
+                        className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${
+                          project.status === 'Completed'
+                            ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400'
+                            : 'bg-amber-500/10 text-amber-600 dark:text-amber-400'
+                        }`}
+                      >
+                        {project.status}
+                      </span>
+                    </div>
 
-                    <h3 className="mt-1 text-lg font-bold leading-tight">
+                    <h3 className="mt-2 text-lg font-bold leading-tight">
                       {project.title}
                     </h3>
                     <p className="mt-2 text-sm leading-relaxed text-muted-foreground">

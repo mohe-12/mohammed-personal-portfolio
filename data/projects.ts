@@ -3,6 +3,7 @@ export type Project = {
   number: string;
   title: string;
   description: string;
+  status: 'Completed' | 'In Progress';
   githubUrl: string | null;
   liveUrl: string | null;
   previewImage: string | null;
@@ -17,6 +18,7 @@ export const projects: Project[] = [
     title: 'Yetababarut Beherawi Petroleum (YBP)',
     description:
       'Full-stack website for a petroleum company in Bale Robe, with service pages and a responsive design. Built with Next.js, React, TypeScript, and Tailwind CSS.',
+    status: 'Completed',
     githubUrl: 'https://github.com/mohe-12/ybp-website-mohe',
     liveUrl: 'https://ybp-website-mohe.vercel.app/',
     previewImage: 'https://i.postimg.cc/PqXcfk3d/ybp.png',
@@ -29,6 +31,7 @@ export const projects: Project[] = [
     title: 'Employee Management System',
     description:
       'Full-stack system for Bule Hora University to manage staff records and roles. Built with the MERN stack, TypeScript, and Tailwind CSS.',
+    status: 'In Progress',
     githubUrl: null,
     liveUrl: null,
     previewImage: 'https://i.postimg.cc/rmyhTCwn/ems.png',
@@ -41,6 +44,7 @@ export const projects: Project[] = [
     title: 'Personal Portfolio',
     description:
       'Responsive portfolio showcasing my projects, skills, and resume. Built with React, Next.js, TypeScript, Tailwind CSS, and Framer Motion.',
+    status: 'Completed',
     githubUrl: 'https://github.com/mohe-12/mohammed-personal-portfolio',
     liveUrl: 'https://mohammed-personal-portfolio.vercel.app/',
     previewImage: 'https://i.postimg.cc/9F9sJbR8/portfolio.png',
@@ -53,6 +57,7 @@ export const projects: Project[] = [
     title: 'MoziBlog',
     description:
       'Full-stack blog platform with articles on technology, sports, and business. Built with Next.js, Tailwind CSS, Laravel, and MySQL.',
+    status: 'In Progress',
     githubUrl: null,
     liveUrl: null,
     previewImage: 'https://i.postimg.cc/Vkj4bHrc/mozi.png',
