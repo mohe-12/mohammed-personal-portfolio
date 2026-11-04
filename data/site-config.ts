@@ -11,7 +11,7 @@ export const siteConfig = {
     institution: 'Bule Hora University',
     graduationYear: '2026',
   },
-  resumePath: '/resume/mohammed-hasen-resume.pdf',
+  resumePath: '/resume/Mohammed_Hasen_CV.pdf',
   profileImagePath: '/images/profile.png',
   url: 'https://mohammedhasen.vercel.app',
 } as const;
