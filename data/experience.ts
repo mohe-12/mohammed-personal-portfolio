@@ -7,7 +7,7 @@ export type ExperienceItem = {
 
 export const experiences: ExperienceItem[] = [
   {
-    role: 'Frontend Development Intern',
+    role: 'Web Development Intern',
     organization: 'Madda Walabu University, College of Computing, (on-site)',
     startDate: 'July 2025',
     endDate: 'Oct 2025',
