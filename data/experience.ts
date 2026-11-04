@@ -26,5 +26,5 @@ export const education: EducationItem = {
   institution: 'Bule Hora University',
   year: '2026',
   description:
-    'Undergraduate program focused on computer science fundamentals, software engineering, and modern web development.',
+    'Graduate program focused on computer science fundamentals, software engineering, and modern web development.',
 };

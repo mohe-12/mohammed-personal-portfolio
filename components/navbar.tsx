@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -13,6 +13,9 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [underlinedLink, setUnderlinedLink] = useState<string | null>(null);
+  const headerRef = useRef<HTMLElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const pendingMobileHref = useRef<string | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -40,41 +43,55 @@ export function Navbar() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = mobileOpen ? 'hidden' : '';
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [mobileOpen]);
-
-  useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setMobileOpen(false);
+      if (event.key === 'Escape' && mobileOpen) {
+        setMobileOpen(false);
+        menuButtonRef.current?.focus();
+      }
     };
     const onResize = () => {
       if (window.matchMedia('(min-width: 1024px)').matches) {
         setMobileOpen(false);
       }
     };
+    const onPointerDown = (event: PointerEvent) => {
+      if (
+        mobileOpen &&
+        event.target instanceof Node &&
+        !headerRef.current?.contains(event.target)
+      ) {
+        setMobileOpen(false);
+      }
+    };
 
     window.addEventListener('keydown', onKeyDown);
     window.addEventListener('resize', onResize);
+    document.addEventListener('pointerdown', onPointerDown);
     return () => {
       window.removeEventListener('keydown', onKeyDown);
       window.removeEventListener('resize', onResize);
+      document.removeEventListener('pointerdown', onPointerDown);
     };
-  }, []);
+  }, [mobileOpen]);
 
-  const handleNav = (href: string) => {
-    setMobileOpen(false);
+  const handleNav = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!mobileOpen) return;
+
+    event.preventDefault();
+    const href = event.currentTarget.hash;
+    const target = document.getElementById(href.slice(1));
+    pendingMobileHref.current = href;
+
     if (window.location.hash !== href) {
       window.history.pushState(null, '', href);
     }
-    const el = document.querySelector(href);
-    el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    setMobileOpen(false);
   };
 
   return (
     <header
+      ref={headerRef}
       className={cn(
         'fixed inset-x-0 top-0 z-50 transition-all duration-300',
         scrolled
@@ -85,10 +102,7 @@ export function Navbar() {
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-2 px-4 sm:px-6 lg:px-8">
         <a
           href="#home"
-          onClick={(e) => {
-            e.preventDefault();
-            handleNav('#home');
-          }}
+          onClick={handleNav}
           className="group flex shrink-0 items-center gap-1.5 whitespace-nowrap text-sm font-extrabold tracking-tight transition-opacity hover:opacity-90 sm:text-lg"
           aria-label="Mohammed Hasen — home"
         >
@@ -111,10 +125,7 @@ export function Navbar() {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNav(link.href);
-                  }}
+                  onClick={handleNav}
                   onPointerEnter={() => setUnderlinedLink(link.href)}
                   onFocus={() => setUnderlinedLink(link.href)}
                   onBlur={() => setUnderlinedLink(null)}
@@ -159,6 +170,7 @@ export function Navbar() {
             </a>
           </Button>
           <Button
+            ref={menuButtonRef}
             variant="ghost"
             size="icon"
             className="lg:hidden"
@@ -172,7 +184,18 @@ export function Navbar() {
         </div>
       </nav>
 
-      <AnimatePresence>
+      <AnimatePresence
+        onExitComplete={() => {
+          const href = pendingMobileHref.current;
+          if (!href) return;
+
+          pendingMobileHref.current = null;
+          document.getElementById(href.slice(1))?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          });
+        }}
+      >
         {mobileOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
@@ -180,7 +203,7 @@ export function Navbar() {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: 'easeInOut' }}
             id="mobile-navigation"
-            className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-b border-border bg-background/95 glass lg:hidden"
+            className="max-h-[calc(100vh-4rem)] overflow-y-auto overscroll-contain border-b border-border bg-background/95 glass supports-[height:100dvh]:max-h-[calc(100dvh-4rem)] lg:hidden"
           >
             <ul className="flex flex-col gap-1 px-4 py-4 sm:px-6">
               {navLinks.map((link) => {
@@ -190,10 +213,7 @@ export function Navbar() {
                   <li key={link.href}>
                     <a
                       href={link.href}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleNav(link.href);
-                      }}
+                      onClick={handleNav}
                       className={cn(
                         'block rounded-lg px-4 py-3 text-base font-medium transition-colors',
                         active

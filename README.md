@@ -37,4 +37,4 @@ npm run dev
 - Lucide React + react-icons
 - EmailJS (email delivery for the contact form)
 
-# my-personal-portfolio
+# mohammed-personal-portfolio

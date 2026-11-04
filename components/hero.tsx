@@ -116,9 +116,9 @@ export function Hero() {
           {/* Buttons */}
           <motion.div
             variants={item}
-            className="mt-8 flex flex-col items-center gap-3 sm:flex-row lg:items-start"
+            className="mt-8 flex flex-row items-center justify-center gap-2 sm:justify-start sm:gap-3 lg:items-start"
           >
-            <Button asChild size="lg" className="group w-full sm:w-auto">
+            <Button asChild size="lg" className="group min-w-0 flex-1 px-3 sm:flex-none sm:px-8">
               <motion.a
                 href="#projects"
                 whileHover={{ y: -3, scale: 1.03 }}
@@ -129,7 +129,7 @@ export function Hero() {
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </motion.a>
             </Button>
-            <Button asChild size="lg" variant="outline" className="w-full sm:w-auto">
+            <Button asChild size="lg" variant="outline" className="min-w-0 flex-1 px-3 sm:flex-none sm:px-8">
               <a href="#contact">
                 <Mail className="mr-2 h-4 w-4" />
                 Contact Me
