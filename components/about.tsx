@@ -5,14 +5,6 @@ import { UserRound } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { CursorTilt } from '@/components/cursor-tilt';
 
-const techStack = [
-  'React.js',
-  'Next.js',
-  'Node.js',
-  'Express.js',
-  'MongoDB',
-  'Laravel',
-];
 
 export function AboutCard() {
   return (
@@ -35,28 +27,17 @@ export function AboutCard() {
 
             <div className="space-y-4 text-base leading-relaxed text-muted-foreground">
               <p>
-                I&apos;m a Computer Science and Engineering graduate from Bule
-                Hora University, passionate about web development and building
-                practical digital solutions that solve real problems.
+                I&apos;m a Computer Science and Engineering graduate from Bule Hora
+                University with a strong foundation in software development,
+                information systems, and emerging technologies such as AI. I enjoy
+                building practical digital solutions that solve real problems.
               </p>
               <p>
-                Through academic projects and a frontend internship, I have
-                worked with modern frontend and backend technologies and
-                developed a strong interest in creating responsive,
-                maintainable applications.
+                Through academic projects and a frontend internship, I have worked with
+                modern frontend and backend technologies, and I&apos;m eager to keep
+                growing across the wider technology field.
               </p>
             </div>
-
-            <ul className="mt-5 flex flex-wrap gap-2" aria-label="Core technologies">
-              {techStack.map((tech) => (
-                <li
-                  key={tech}
-                  className="rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-medium text-primary"
-                >
-                  {tech}
-                </li>
-              ))}
-            </ul>
           </CardContent>
         </Card>
       </CursorTilt>

@@ -13,7 +13,7 @@ export function Overview() {
             <span className="gradient-text">view</span>
           </>
         }
-        subtitle="Full-Stack Web Developer"
+        subtitle="Computer Science & Engineering Graduate | Full-Stack Web Developer"
       />
       <div className="grid items-stretch gap-5 lg:grid-cols-3">
         <AboutCard />

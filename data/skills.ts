@@ -55,7 +55,6 @@ export const skillCategories: SkillCategory[] = [
       { name: 'Git', iconName: 'git', color: '#F05032' },
       { name: 'GitHub', iconName: 'github', color: 'currentColor' },
       { name: 'VS Code', iconName: 'vscode', color: '#007ACC' },
-      { name: 'Postman', iconName: 'postman', color: '#FF6C37' },
       { name: 'Vercel', iconName: 'vercel', color: 'currentColor' },
     ],
   },
@@ -65,10 +64,7 @@ export const skillCategories: SkillCategory[] = [
     skills: [
       { name: 'ChatGPT', iconName: 'sparkles', color: '#10A37F' },
       { name: 'GitHub Copilot', iconName: 'sparkles', color: '#8D6CF1' },
-      { name: 'Gemini', iconName: 'sparkles', color: '#4285F4' },
       { name: 'Claude', iconName: 'sparkles', color: '#D97757' },
-      { name: 'Prompt Engineering', iconName: 'sparkles', color: '#8B5CF6' },
-      { name: 'AI-assisted coding', iconName: 'sparkles', color: '#10A37F' },
     ],
   },
 ];

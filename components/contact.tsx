@@ -205,8 +205,7 @@ export function Contact() {
                   Let&apos;s build something great.
                 </h3>
                 <p className="mt-4 max-w-lg leading-relaxed text-muted-foreground">
-                  I&apos;m open to full-stack development opportunities, freelance projects,
-                  collaborations, and interesting ideas.
+                  I&apos;m open to technology opportunities, including software development, IT, and AI-related roles, as well as freelance projects and collaborations.
                 </p>
               </div>
 
