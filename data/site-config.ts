@@ -5,7 +5,7 @@ export const siteConfig = {
   description:
     'I build responsive web applications and practical digital solutions using modern web technologies, thoughtful design, and clean code.',
   email: 'mohammedhasen2025q@gmail.com',
-  location: 'Bale Robe, Oromia, Ethiopia',
+  location: 'Bale Robe, Ethiopia',
   education: {
     degree: 'BSc in Computer Science and Engineering',
     institution: 'Bule Hora University',
@@ -21,7 +21,7 @@ export type SiteConfig = typeof siteConfig;
 export const navLinks = [
   { name: 'Home', href: '#home' },
   { name: 'Overview', href: '#about' },
-  { name: 'Expertise', href: '#skills' },
   { name: 'Projects', href: '#projects' },
+  { name: 'Expertise', href: '#skills' },
   { name: 'Contact', href: '#contact' },
 ] as const;

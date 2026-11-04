@@ -22,9 +22,8 @@ export type EducationItem = {
 };
 
 export const education: EducationItem = {
-  degree: 'Bachelor of Science in Computer Science and Engineering',
+  degree: 'BSc in Computer Science and Engineering',
   institution: 'Bule Hora University',
   year: '2026',
-  description:
-    'Graduate program focused on computer science fundamentals, software engineering, and modern web development.',
+  description: '',
 };

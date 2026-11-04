@@ -82,9 +82,6 @@ export function EducationCard() {
             <p className="mt-1 text-sm font-medium text-primary">
               {education.institution}
             </p>
-            <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-              {education.description}
-            </p>
             <div className="mt-4 flex flex-wrap gap-3 text-sm text-muted-foreground">
               <span className="inline-flex items-center gap-1.5">
                 <Calendar className="h-4 w-4" />
@@ -92,7 +89,7 @@ export function EducationCard() {
               </span>
               <span className="inline-flex items-center gap-1.5">
                 <MapPin className="h-4 w-4" />
-                Ethiopia
+                Bule Hora, Ethiopia
               </span>
             </div>
           </CardContent>

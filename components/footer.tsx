@@ -72,10 +72,16 @@ export function Footer() {
           </div>
         </div>
 
-        <p className="mt-5 border-t border-border/60 pt-4 text-center text-xs text-muted-foreground sm:text-left">
-          &copy; {year} {siteConfig.name}
+      <div className="flex flex-col items-center justify-between gap-5 sm:flex-row">
+        <p className="mt-5 pt-4 border-t border-border/60 text-center text-xs text-muted-foreground sm:text-left">
+          &copy; {year} All Rights Reserved
+        </p>
+
+        <p className="mt-5 pt-4 border-t border-border/60 text-end text-xs text-muted-foreground sm:text-left">
+          Developed By {siteConfig.name} 
         </p>
       </div>
+    </div>
     </footer>
   );
 }

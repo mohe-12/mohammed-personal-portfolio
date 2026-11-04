@@ -1,7 +1,8 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { Github, ExternalLink } from 'lucide-react';
+import { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Github, ExternalLink, ChevronDown } from 'lucide-react';
 import { Section, SectionHeader } from '@/components/section';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -9,6 +10,10 @@ import { projects } from '@/data/projects';
 import { CursorTilt } from '@/components/cursor-tilt';
 
 export function Projects() {
+  const [showAll, setShowAll] = useState(false);
+  const visibleProjects = showAll ? projects : projects.slice(0, 3);
+  const hiddenProjectCount = projects.length - 3;
+
   return (
     <Section id="projects">
       <SectionHeader
@@ -22,17 +27,19 @@ export function Projects() {
         subtitle="A showcase of my work, highlighting my skills and experience in web development."
       />
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {projects.map((project, i) => (
-          <motion.div
-            key={project.id}
-            className="h-full"
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.5, delay: i * 0.1 }}
-          >
-            <CursorTilt>
-              <Card className="group flex h-full flex-col overflow-hidden border-border/60 transition-all hover:border-primary/40 hover:shadow-xl">
+        <AnimatePresence initial={false}>
+          {visibleProjects.map((project, i) => (
+            <motion.div
+              layout
+              key={project.id}
+              className="h-full"
+              initial={{ opacity: 0, y: 20, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -12, scale: 0.98 }}
+              transition={{ duration: 0.35, delay: i >= 3 ? (i - 3) * 0.08 : 0 }}
+            >
+              <CursorTilt>
+                <Card className="group flex h-full flex-col overflow-hidden border-border/60 transition-all hover:border-primary/40 hover:shadow-xl">
                 {/* Preview header */}
                 <div className="relative aspect-video overflow-hidden">
                   <ProjectPreview project={project} />
@@ -52,7 +59,7 @@ export function Projects() {
                     {project.description}
                   </p>
 
-                  <div className="mt-auto flex flex-wrap gap-2 pt-5">
+                  <div className="mt-auto flex flex-wrap justify-center gap-2 pt-5">
                     {project.githubUrl ? (
                       <Button asChild size="sm" variant="outline">
                         <a
@@ -98,10 +105,30 @@ export function Projects() {
                     )}
                   </div>
                 </CardContent>
-              </Card>
-            </CursorTilt>
-          </motion.div>
-        ))}
+                </Card>
+              </CursorTilt>
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </div>
+      <div className="mt-8 flex justify-center">
+        {projects.length > 3 && (
+          <Button
+            type="button"
+            size="lg"
+            variant="outline"
+            onClick={() => setShowAll((current) => !current)}
+          >
+            {showAll
+              ? 'Show Fewer Projects'
+              : `View All Projects (+${hiddenProjectCount} more)`}
+            <ChevronDown
+              className={`ml-2 h-4 w-4 transition-transform duration-300 ${
+                showAll ? 'rotate-180' : ''
+              }`}
+            />
+          </Button>
+        )}
       </div>
     </Section>
   );

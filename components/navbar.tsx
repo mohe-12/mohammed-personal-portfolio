@@ -107,7 +107,7 @@ export function Navbar() {
           aria-label="Mohammed Hasen — home"
         >
           <span className="text-foreground">Mohammed</span>
-          <span className="gradient-text">Hasen</span>
+          <span className="gradient-text">H</span>
           <span
             className="ml-0.5 h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_10px_hsl(var(--accent)/0.65)] transition-transform duration-300 group-hover:scale-125"
             aria-hidden="true"

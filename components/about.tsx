@@ -5,18 +5,6 @@ import { Code2, GraduationCap, Target, UserRound } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { CursorTilt } from '@/components/cursor-tilt';
 
-const highlights = [
-  {
-    icon: Code2,
-    title: 'Focus',
-    description: 'Full-stack web development and modern web technologies.',
-  },
-  {
-    icon: Target,
-    title: 'Career Goal',
-    description: 'Contributing to software projects while growing as a developer.',
-  },
-];
 
 export function AboutCard() {
   return (
@@ -37,9 +25,9 @@ export function AboutCard() {
               <h3 className="text-xl font-bold">Profile</h3>
             </div>
             <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-              I&apos;m Mohammed Hasen, a Computer Science and Engineering graduate
+              I&apos;m a Computer Science and Engineering graduate
               from Bule Hora University. I am passionate about web development and
-              building practical digital solutions that solve real problems.
+              building practical digital solutions that solve real problems.<br/><br/>
               Through academic projects and internship experience, I have worked
               with modern frontend and backend technologies and developed an
               interest in creating useful, responsive, and maintainable
