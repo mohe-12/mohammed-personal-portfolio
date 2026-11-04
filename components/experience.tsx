@@ -21,23 +21,17 @@ export function ExperienceCard() {
           <CardContent className="p-6">
             <div className="mb-5 flex items-center gap-3">
               <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                <Briefcase className="h-4 w-4" />
+                <Briefcase className="h-4 w-4" aria-hidden="true" />
               </div>
               <h3 className="text-xl font-bold">Work Experience</h3>
             </div>
 
-            <div className="pb-5">
-              <h4 className="text-base font-bold text-primary">Fresher</h4>
-              <p className="mt-3 text-base leading-relaxed text-muted-foreground">
-                I’m currently seeking opportunities where I can contribute to
-                real-world software projects, expand my technical expertise, and
-                grow as a professional software developer.
-              </p>
-            </div>
-
             <div className="grid gap-5">
               {experiences.map((experience) => (
-                <div key={experience.role} className="relative pl-6">
+                <div
+                  key={`${experience.role}-${experience.organization}`}
+                  className="relative pl-6"
+                >
                   <span className="absolute left-0 top-2 h-2.5 w-2.5 rounded-full bg-primary" />
                   <h4 className="text-base font-bold">{experience.role}</h4>
                   <p className="mt-2 text-sm font-medium uppercase tracking-wide text-primary">
@@ -48,6 +42,17 @@ export function ExperienceCard() {
                   </p>
                 </div>
               ))}
+            </div>
+
+            <div className="mt-6 border-t border-border/60 pt-5">
+              <h4 className="text-base font-bold text-primary">
+                Open to Opportunities
+              </h4>
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                I&apos;m a recent graduate looking for a software developer role
+                where I can contribute to real-world projects and keep growing
+                my technical skills.
+              </p>
             </div>
           </CardContent>
         </Card>
@@ -71,7 +76,7 @@ export function EducationCard() {
           <CardContent className="p-6">
             <div className="mb-5 flex items-center gap-3">
               <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                <GraduationCap className="h-4 w-4" />
+                <GraduationCap className="h-4 w-4" aria-hidden="true" />
               </div>
               <h3 className="text-xl font-bold">Education</h3>
             </div>
@@ -84,11 +89,11 @@ export function EducationCard() {
             </p>
             <div className="mt-4 flex flex-wrap gap-3 text-sm text-muted-foreground">
               <span className="inline-flex items-center gap-1.5">
-                <Calendar className="h-4 w-4" />
+                <Calendar className="h-4 w-4" aria-hidden="true" />
                 Graduation {education.year}
               </span>
               <span className="inline-flex items-center gap-1.5">
-                <MapPin className="h-4 w-4" />
+                <MapPin className="h-4 w-4" aria-hidden="true" />
                 Bule Hora, Ethiopia
               </span>
             </div>

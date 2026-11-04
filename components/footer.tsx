@@ -11,6 +11,9 @@ const iconMap = {
   telegram: SiTelegram,
 };
 
+const iconLinkClass =
+  'flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring';
+
 export function Footer() {
   const year = new Date().getFullYear();
 
@@ -18,14 +21,6 @@ export function Footer() {
     <footer className="border-t border-border/60">
       <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center justify-between gap-5 sm:flex-row">
-          <a
-            href="#home"
-            aria-label={`${siteConfig.name} — home`}
-            className="text-sm font-semibold tracking-tight transition-colors hover:text-primary focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          >
-            {siteConfig.name}
-          </a>
-
           <nav aria-label="Footer navigation">
             <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
               {navLinks.map((link) => (
@@ -43,14 +38,12 @@ export function Footer() {
 
           <div className="flex items-center gap-2">
             <a
-              href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(siteConfig.email)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Compose an email to ${siteConfig.name} in Gmail`}
-              title="Compose email in Gmail"
-              className="flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              href={`mailto:${siteConfig.email}`}
+              aria-label={`Send an email to ${siteConfig.name}`}
+              title="Send an email"
+              className={iconLinkClass}
             >
-              <Mail className="h-4 w-4" />
+              <Mail className="h-4 w-4" aria-hidden="true" />
             </a>
             {configuredSocialLinks
               .filter((link) => link.icon !== 'mail')
@@ -63,25 +56,24 @@ export function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={link.label}
-                    className="flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className={iconLinkClass}
                   >
-                    <Icon className="h-4 w-4" />
+                    <Icon className="h-4 w-4" aria-hidden="true" />
                   </a>
                 );
               })}
           </div>
         </div>
 
-      <div className="flex flex-col items-center justify-between gap-5 sm:flex-row">
-        <p className="mt-5 pt-4 border-t border-border/60 text-center text-xs text-muted-foreground sm:text-left">
-          &copy; {year} All Rights Reserved
-        </p>
-
-        <p className="mt-5 pt-4 border-t border-border/60 text-end text-xs text-muted-foreground sm:text-left">
-          Developed By {siteConfig.name} 
-        </p>
+        <div className="mt-5 flex flex-col items-center justify-between gap-2 border-t border-border/60 pt-4 text-xs text-muted-foreground sm:flex-row">
+          <p className="text-center sm:text-left">
+            &copy; {year} {siteConfig.name}. All rights reserved.
+          </p>
+          <p className="text-center sm:text-right">
+            Built with Next.js, TypeScript &amp; Tailwind CSS
+          </p>
+        </div>
       </div>
-    </div>
     </footer>
   );
 }

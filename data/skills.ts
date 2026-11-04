@@ -26,7 +26,7 @@ export const skillCategories: SkillCategory[] = [
       { name: 'HTML', iconName: 'html5', color: '#E34F26' },
       { name: 'CSS', iconName: 'css3', color: '#1572B6' },
       { name: 'React', iconName: 'react', color: '#61DAFB' },
-      { name: 'Next.js', iconName: 'nextjs', color: '#000000' },
+      { name: 'Next.js', iconName: 'nextjs', color: 'currentColor' },
       { name: 'Tailwind CSS', iconName: 'tailwind', color: '#06B6D4' },
     ],
   },
@@ -35,7 +35,7 @@ export const skillCategories: SkillCategory[] = [
     iconName: 'server',
     skills: [
       { name: 'Node.js', iconName: 'nodejs', color: '#339933' },
-      { name: 'Express.js', iconName: 'express', color: '#000000' },
+      { name: 'Express.js', iconName: 'express', color: 'currentColor' },
       { name: 'Laravel', iconName: 'laravel', color: '#FF2D20' },
       { name: 'REST APIs', iconName: 'api', color: '#6366F1' },
     ],
@@ -53,10 +53,10 @@ export const skillCategories: SkillCategory[] = [
     iconName: 'wrench',
     skills: [
       { name: 'Git', iconName: 'git', color: '#F05032' },
-      { name: 'GitHub', iconName: 'github', color: '#181717' },
+      { name: 'GitHub', iconName: 'github', color: 'currentColor' },
       { name: 'VS Code', iconName: 'vscode', color: '#007ACC' },
       { name: 'Postman', iconName: 'postman', color: '#FF6C37' },
-      { name: 'Vercel', iconName: 'vercel', color: '#000000' },
+      { name: 'Vercel', iconName: 'vercel', color: 'currentColor' },
     ],
   },
   {
@@ -75,12 +75,12 @@ export const skillCategories: SkillCategory[] = [
 
 export const orbitTechnologies = [
   { name: 'React', iconName: 'react', color: '#61DAFB' },
-  { name: 'Next.js', iconName: 'nextjs', color: '#000000' },
+  { name: 'Next.js', iconName: 'nextjs', color: 'currentColor' },
   { name: 'JavaScript', iconName: 'javascript', color: '#F7DF1E' },
   { name: 'HTML', iconName: 'html5', color: '#E34F26' },
   { name: 'CSS', iconName: 'css3', color: '#1572B6' },
   { name: 'Node.js', iconName: 'nodejs', color: '#339933' },
-  { name: 'Express', iconName: 'express', color: '#000000' },
+  { name: 'Express', iconName: 'express', color: 'currentColor' },
   { name: 'MongoDB', iconName: 'mongodb', color: '#47A248' },
   { name: 'Laravel', iconName: 'laravel', color: '#FF2D20' },
   { name: 'Git', iconName: 'git', color: '#F05032' },

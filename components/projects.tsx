@@ -6,13 +6,15 @@ import { Github, ExternalLink, ChevronDown } from 'lucide-react';
 import { Section, SectionHeader } from '@/components/section';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { projects } from '@/data/projects';
+import { projects, type Project } from '@/data/projects';
 import { CursorTilt } from '@/components/cursor-tilt';
+
+const INITIAL_COUNT = 3;
 
 export function Projects() {
   const [showAll, setShowAll] = useState(false);
-  const visibleProjects = showAll ? projects : projects.slice(0, 3);
-  const hiddenProjectCount = projects.length - 3;
+  const visibleProjects = showAll ? projects : projects.slice(0, INITIAL_COUNT);
+  const hiddenProjectCount = projects.length - INITIAL_COUNT;
 
   return (
     <Section id="projects">
@@ -26,6 +28,7 @@ export function Projects() {
         }
         subtitle="A showcase of my work, highlighting my skills and experience in web development."
       />
+
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         <AnimatePresence initial={false}>
           {visibleProjects.map((project, i) => (
@@ -36,87 +39,94 @@ export function Projects() {
               initial={{ opacity: 0, y: 20, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -12, scale: 0.98 }}
-              transition={{ duration: 0.35, delay: i >= 3 ? (i - 3) * 0.08 : 0 }}
+              transition={{
+                duration: 0.35,
+                delay: i >= INITIAL_COUNT ? (i - INITIAL_COUNT) * 0.08 : 0,
+              }}
             >
               <CursorTilt>
                 <Card className="group flex h-full flex-col overflow-hidden border-border/60 transition-all hover:border-primary/40 hover:shadow-xl">
-                {/* Preview header */}
-                <div className="relative aspect-video overflow-hidden">
-                  <ProjectPreview project={project} />
-                </div>
+                  {/* Preview header */}
+                  <div className="relative aspect-video overflow-hidden">
+                    <ProjectPreview project={project} />
+                  </div>
 
-                <CardContent className="flex flex-1 flex-col p-5">
-                  <div className="flex items-start justify-between gap-2">
+                  <CardContent className="flex flex-1 flex-col p-5">
                     <span className="text-xs font-bold text-primary/70">
                       {project.number}
                     </span>
-                  </div>
 
-                  <h3 className="mt-1 text-lg font-bold leading-tight">
-                    {project.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {project.description}
-                  </p>
+                    <h3 className="mt-1 text-lg font-bold leading-tight">
+                      {project.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      {project.description}
+                    </p>
 
-                  <div className="mt-auto flex flex-wrap justify-center gap-2 pt-5">
-                    {project.githubUrl ? (
-                      <Button asChild size="sm" variant="outline">
-                        <a
-                          href={project.githubUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                    <div className="mt-auto flex flex-wrap justify-center gap-2 pt-5">
+                      {project.githubUrl ? (
+                        <Button asChild size="sm" variant="outline">
+                          <a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`${project.title} on GitHub`}
+                          >
+                            <Github className="mr-1.5 h-3.5 w-3.5" aria-hidden="true" />
+                            GitHub
+                          </a>
+                        </Button>
+                      ) : (
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          disabled
+                          title="GitHub link coming soon"
                         >
-                          <Github className="mr-1.5 h-3.5 w-3.5" />
+                          <Github className="mr-1.5 h-3.5 w-3.5" aria-hidden="true" />
                           GitHub
-                        </a>
-                      </Button>
-                    ) : (
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        disabled
-                        title="GitHub link coming soon"
-                      >
-                        <Github className="mr-1.5 h-3.5 w-3.5" />
-                        GitHub
-                      </Button>
-                    )}
-                    {project.liveUrl ? (
-                      <Button asChild size="sm">
-                        <a
-                          href={project.liveUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                        </Button>
+                      )}
+
+                      {project.liveUrl ? (
+                        <Button asChild size="sm">
+                          <a
+                            href={project.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`${project.title} live demo`}
+                          >
+                            <ExternalLink className="mr-1.5 h-3.5 w-3.5" aria-hidden="true" />
+                            Live Demo
+                          </a>
+                        </Button>
+                      ) : (
+                        <Button
+                          size="sm"
+                          disabled
+                          title="Live demo link coming soon"
                         >
-                          <ExternalLink className="mr-1.5 h-3.5 w-3.5" />
+                          <ExternalLink className="mr-1.5 h-3.5 w-3.5" aria-hidden="true" />
                           Live Demo
-                        </a>
-                      </Button>
-                    ) : (
-                      <Button
-                        size="sm"
-                        disabled
-                        title="Live demo link coming soon"
-                      >
-                        <ExternalLink className="mr-1.5 h-3.5 w-3.5" />
-                        Live Demo
-                      </Button>
-                    )}
-                  </div>
-                </CardContent>
+                        </Button>
+                      )}
+                    </div>
+                  </CardContent>
                 </Card>
               </CursorTilt>
             </motion.div>
           ))}
         </AnimatePresence>
       </div>
-      <div className="mt-8 flex justify-center">
-        {projects.length > 3 && (
+
+      {projects.length > INITIAL_COUNT && (
+        <div className="mt-8 flex w-full items-center justify-center gap-4 sm:gap-6">
+          <span className="h-px flex-1 bg-border" aria-hidden="true" />
           <Button
             type="button"
             size="lg"
             variant="outline"
+            aria-expanded={showAll}
             onClick={() => setShowAll((current) => !current)}
           >
             {showAll
@@ -126,22 +136,20 @@ export function Projects() {
               className={`ml-2 h-4 w-4 transition-transform duration-300 ${
                 showAll ? 'rotate-180' : ''
               }`}
+              aria-hidden="true"
             />
           </Button>
-        )}
-      </div>
+          <span className="h-px flex-1 bg-border" aria-hidden="true" />
+        </div>
+      )}
     </Section>
   );
 }
 
-function ProjectPreview({
-  project,
-}: {
-  project: { previewImage: string | null; accentFrom: string; accentTo: string; title: string; number: string };
-}) {
+function ProjectPreview({ project }: { project: Project }) {
   if (project.previewImage) {
-    // eslint-disable-next-line @next/next/no-img-element
     return (
+      // eslint-disable-next-line @next/next/no-img-element
       <img
         src={project.previewImage}
         alt={`${project.title} preview`}
