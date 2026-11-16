@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { MotionConfig, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
   Mail,
   MapPin,
@@ -178,8 +178,7 @@ export function Contact() {
   };
 
   return (
-    <MotionConfig reducedMotion="user">
-      <Section id="contact" className="bg-muted/20">
+    <Section id="contact" className="bg-muted/20">
         <SectionHeader
           eyebrow="Let's connect"
           title={
@@ -331,7 +330,7 @@ export function Contact() {
                     <h3 className="gradient-text text-sm font-bold uppercase tracking-[0.2em]">
                       Send a message
                     </h3>
-                    <p className="mt-2 text-base text-muted-foreground md:text-lg">
+                    <p className="mt-2 text-base leading-relaxed text-muted-foreground">
                       Fill out the form below and I&apos;ll respond as soon as I can.
                     </p>
                   </motion.div>
@@ -373,7 +372,7 @@ export function Contact() {
                         type="email"
                         autoComplete="email"
                         maxLength={150}
-                        placeholder="your_email@gmail.com"
+                        placeholder="you@gmail.com"
                         value={values.email}
                         onChange={handleChange('email')}
                         aria-invalid={!!errors.email}
@@ -469,7 +468,7 @@ export function Contact() {
                     <Button
                       type="submit"
                       disabled={status === 'submitting'}
-                      className="h-14 w-full rounded-2xl bg-gradient-to-r from-primary via-violet-600 to-accent text-base font-semibold text-white shadow-md transition-all hover:-translate-y-0.5 hover:shadow-lg"
+                      className="h-14 w-full rounded-2xl bg-gradient-to-r from-primary via-violet-600 to-accent text-base font-semibold text-primary-foreground shadow-md transition-all hover:-translate-y-0.5 hover:shadow-lg dark:via-violet-300 dark:to-accent"
                     >
                       {status === 'submitting' ? (
                         <>
@@ -489,7 +488,6 @@ export function Contact() {
             </motion.div>
           </div>
         </Card>
-      </Section>
-    </MotionConfig>
+    </Section>
   );
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Geist } from 'next/font/google';
+import { MotionConfig } from 'framer-motion';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { cn } from '@/lib/utils';
@@ -80,7 +81,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <MotionConfig reducedMotion="never">{children}</MotionConfig>
         </ThemeProvider>
       </body>
     </html>

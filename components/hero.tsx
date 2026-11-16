@@ -36,7 +36,7 @@ function useTypewriter(texts: string[], speed = 90, pause = 1800) {
 
   useEffect(() => {
     let i = 0;
-    let timer: ReturnType<typeof setTimeout>;
+    let timer: ReturnType<typeof setTimeout> | undefined;
     const tick = () => {
       if (i <= text.length) {
         setDisplayed(text.slice(0, i));
@@ -52,8 +52,10 @@ function useTypewriter(texts: string[], speed = 90, pause = 1800) {
       }
     };
     tick();
-    return () => clearTimeout(timer);
-  }, [text, texts.length, speed, pause]);
+    return () => {
+      if (timer !== undefined) clearTimeout(timer);
+    };
+  }, [text, texts, speed, pause]);
 
   return { displayed, done };
 }
@@ -154,7 +156,7 @@ export function Hero() {
                       target={link.icon === 'mail' ? undefined : '_blank'}
                       rel={link.icon === 'mail' ? undefined : 'noopener noreferrer'}
                       aria-label={link.label}
-                      className="flex h-9 w-9 items-center justify-center rounded-lg border border-border text-muted-foreground transition-all hover:border-primary hover:text-primary hover:-translate-y-0.5"
+                      className="flex h-11 w-11 items-center justify-center rounded-lg border border-border text-muted-foreground transition-all hover:border-primary hover:text-primary hover:-translate-y-0.5"
                     >
                       <Icon className="h-4 w-4" />
                     </a>

@@ -152,7 +152,7 @@ export function Navbar() {
         </ul>
 
         <div className="flex shrink-0 items-center gap-1 sm:gap-2">
-          <ThemeToggle />
+          <ThemeToggle className="h-11 w-11" />
           <Button
             asChild
             size="sm"
@@ -173,7 +173,7 @@ export function Navbar() {
             ref={menuButtonRef}
             variant="ghost"
             size="icon"
-            className="lg:hidden"
+            className="h-11 w-11 lg:hidden"
             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={mobileOpen}
             aria-controls="mobile-navigation"

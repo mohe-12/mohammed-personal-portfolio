@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { motion, MotionConfig } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { TechIcon } from '@/components/tech-icon';
 import { orbitTechnologies } from '@/data/skills';
 import { siteConfig } from '@/data/site-config';
@@ -19,6 +19,7 @@ export function TechnologyOrbit() {
   return (
     <div
       className="relative mx-auto aspect-square w-full max-w-[21rem] sm:max-w-[27rem] lg:max-w-[32rem]"
+      role="group"
       aria-label="Technologies used by Mohammed Hasen"
     >
       <div className="pointer-events-none absolute -right-[5%] top-1/2 h-[70%] w-[60%] -translate-y-1/2 rounded-full bg-gradient-to-r from-transparent via-primary/10 to-accent/15 blur-3xl" />
@@ -28,22 +29,20 @@ export function TechnologyOrbit() {
       <div className="absolute inset-[22%] rounded-full border border-dashed border-primary/25" />
 
       {/* Icons rotate around the fixed outer path */}
-      <MotionConfig reducedMotion="never">
-        <OrbitRing
-          items={outerTechnologies}
-          orbitInset="10%"
-          duration={10}
-          reverseSpin
-        />
+      <OrbitRing
+        items={outerTechnologies}
+        orbitInset="10%"
+        duration={10}
+        reverseSpin
+      />
 
-        {/* Icons rotate around the fixed inner path in the same direction */}
-        <OrbitRing
-          items={innerTechnologies}
-          orbitInset="22%"
-          duration={6}
-          reverseSpin
-        />
-      </MotionConfig>
+      {/* Icons rotate around the fixed inner path in the same direction */}
+      <OrbitRing
+        items={innerTechnologies}
+        orbitInset="22%"
+        duration={6}
+        reverseSpin
+      />
 
       {/* Fixed profile image with breathing room inside the inner path */}
       <ProfileImage className="absolute inset-[28%] z-0" />

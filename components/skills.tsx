@@ -1,6 +1,6 @@
 'use client';
 
-import { MotionConfig, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Code2, Database, Layout, Server, Sparkles, Wrench } from 'lucide-react';
 import { Section, SectionHeader } from '@/components/section';
 import { Card, CardContent } from '@/components/ui/card';
@@ -58,8 +58,7 @@ const categoryCardVariants = {
 
 export function Skills() {
   return (
-    <MotionConfig reducedMotion="user">
-      <Section id="skills" className="bg-muted/20">
+    <Section id="skills" className="bg-muted/20">
         <SectionHeader
           eyebrow="Skills"
           title={
@@ -129,7 +128,6 @@ export function Skills() {
             );
           })}
         </motion.div>
-      </Section>
-    </MotionConfig>
+    </Section>
   );
 }
