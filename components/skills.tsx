@@ -85,7 +85,7 @@ export function Skills() {
                 variants={categoryCardVariants}
               >
                 <CursorTilt>
-                  <Card className="overview-card-decoration skills-card-glow h-full border-border/60 transition-colors hover:border-primary/40 hover:shadow-lg">
+                  <Card className="h-full border-border/60 transition-colors hover:border-primary/40 hover:shadow-lg">
                     <CardContent className="flex h-full flex-col p-6">
                       <div className="mb-5 flex items-center gap-3">
                         <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">

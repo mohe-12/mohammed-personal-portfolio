@@ -15,7 +15,7 @@ export function Overview() {
         }
         subtitle="Computer Science & Engineering Graduate | Full-Stack Web Developer"
       />
-      <div className="grid items-stretch gap-5 lg:grid-cols-3">
+      <div className="overview-card-grid grid items-stretch gap-5 lg:grid-cols-3">
         <AboutCard />
         <ExperienceCard />
         <EducationCard />

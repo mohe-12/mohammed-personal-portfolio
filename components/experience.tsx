@@ -18,7 +18,7 @@ export function ExperienceCard() {
       className="h-full"
     >
       <CursorTilt>
-        <Card className="overview-card-decoration overview-card-glow h-full border-border/60 transition-all hover:border-primary/40 hover:shadow-lg">
+        <Card className="h-full border-border/60 transition-all hover:border-primary/40 hover:shadow-lg">
           <CardContent className="p-6">
             <div className="mb-5 flex items-center gap-3">
               <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
@@ -74,7 +74,7 @@ export function EducationCard() {
       className="h-full"
     >
       <CursorTilt>
-        <Card className="overview-card-decoration overview-card-glow h-full border-border/60 transition-all hover:border-primary/40 hover:shadow-lg">
+        <Card className="h-full border-border/60 transition-all hover:border-primary/40 hover:shadow-lg">
           <CardContent className="p-6">
             <div className="mb-5 flex items-center gap-3">
               <div className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-primary/10">
