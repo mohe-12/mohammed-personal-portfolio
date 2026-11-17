@@ -1,8 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
-import { Briefcase, Calendar, MapPin } from 'lucide-react';
+import { BriefcaseBusiness, Calendar, GraduationCap, MapPin } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { CursorTilt } from '@/components/cursor-tilt';
 import { education, experiences } from '@/data/experience';
@@ -21,8 +20,8 @@ export function ExperienceCard() {
         <Card className="h-full border-border/60 transition-all hover:border-primary/40 hover:shadow-lg">
           <CardContent className="p-6">
             <div className="mb-5 flex items-center gap-3">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                <Briefcase className="h-4 w-4" aria-hidden="true" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <BriefcaseBusiness className="h-5 w-5" aria-hidden="true" />
               </div>
               <h3 className="text-xl font-bold">Work Experience</h3>
             </div>
@@ -77,14 +76,8 @@ export function EducationCard() {
         <Card className="h-full border-border/60 transition-all hover:border-primary/40 hover:shadow-lg">
           <CardContent className="p-6">
             <div className="mb-5 flex items-center gap-3">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-primary/10">
-                <Image
-                  src="https://i.postimg.cc/2j9RpvyY/education.jpg"
-                  alt="Bule Hora University seal"
-                  width={36}
-                  height={36}
-                  className="h-full w-full object-cover"
-                />
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <GraduationCap className="h-5 w-5" aria-hidden="true" />
               </div>
               <h3 className="text-xl font-bold">Educational Background</h3>
             </div>

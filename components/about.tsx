@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { UserRound } from 'lucide-react';
+import { CircleUserRound } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { CursorTilt } from '@/components/cursor-tilt';
 
@@ -19,8 +19,8 @@ export function AboutCard() {
         <Card className="h-full border-border/60 transition-all hover:border-primary/40 hover:shadow-lg">
           <CardContent className="p-6">
             <div className="mb-5 flex items-center gap-3">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                <UserRound className="h-4 w-4" aria-hidden="true" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <CircleUserRound className="h-5 w-5" aria-hidden="true" />
               </div>
               <h3 className="text-xl font-bold">Profile</h3>
             </div>
