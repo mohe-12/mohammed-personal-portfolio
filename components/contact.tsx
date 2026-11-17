@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { MotionConfig, motion } from 'framer-motion';
 import {
   Mail,
   MapPin,
@@ -178,7 +178,8 @@ export function Contact() {
   };
 
   return (
-    <Section id="contact" className="bg-muted/20">
+    <MotionConfig reducedMotion="user">
+      <Section id="contact" className="bg-muted/20">
         <SectionHeader
           eyebrow="Let's connect"
           title={
@@ -468,7 +469,7 @@ export function Contact() {
                     <Button
                       type="submit"
                       disabled={status === 'submitting'}
-                      className="h-14 w-full rounded-2xl bg-gradient-to-r from-primary via-violet-600 to-accent text-base font-semibold text-primary-foreground shadow-md transition-all hover:-translate-y-0.5 hover:shadow-lg dark:via-violet-300 dark:to-accent"
+                      className="h-14 w-full rounded-2xl bg-gradient-to-r from-primary via-violet-600 to-accent text-base font-semibold text-white shadow-md transition-all hover:-translate-y-0.5 hover:shadow-lg"
                     >
                       {status === 'submitting' ? (
                         <>
@@ -488,6 +489,7 @@ export function Contact() {
             </motion.div>
           </div>
         </Card>
-    </Section>
+      </Section>
+    </MotionConfig>
   );
 }

@@ -81,7 +81,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <MotionConfig reducedMotion="never">{children}</MotionConfig>
+          <MotionConfig reducedMotion={process.env.NODE_ENV === "production" ? "user" : "never"}>
+           {children}
+          </MotionConfig>
         </ThemeProvider>
       </body>
     </html>
