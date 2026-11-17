@@ -75,6 +75,15 @@ export function Projects() {
                       {project.description}
                     </p>
 
+                    <ul
+                      aria-label="Technologies used"
+                      className="mt-4 flex flex-wrap gap-2 text-xs text-sky-700 *:rounded-full *:border *:border-sky-100 *:bg-sky-50 *:px-2 *:py-0.5 dark:text-sky-300 dark:*:border-sky-500/15 dark:*:bg-sky-500/10"
+                    >
+                      {project.technologies.map((technology) => (
+                        <li key={technology}>{technology}</li>
+                      ))}
+                    </ul>
+
                     <div className="mt-auto flex flex-wrap justify-center gap-2 pt-5">
                       {project.githubUrl ? (
                         <Button asChild size="sm" variant="outline">

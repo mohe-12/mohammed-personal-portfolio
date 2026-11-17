@@ -27,7 +27,7 @@ export function AboutCard() {
               </h3>
               <span
                 aria-hidden="true"
-                className="h-px min-w-3 flex-1 bg-gradient-to-r from-border via-border/70 to-transparent"
+                className="h-px min-w-3 flex-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-500"
               />
             </div>
 

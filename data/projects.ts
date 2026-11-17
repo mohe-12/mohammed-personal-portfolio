@@ -3,6 +3,7 @@ export type Project = {
   number: string;
   title: string;
   description: string;
+  technologies: string[];
   status: 'Completed' | 'In Progress';
   githubUrl: string | null;
   liveUrl: string | null;
@@ -15,9 +16,10 @@ export const projects: Project[] = [
   {
     id: 'yetababarut-beherawi-petroleum',
     number: '01',
-    title: 'Yetababarut Beherawi Petroleum (YBP)',
+    title: 'Yetababarut Beherawi Petroleum (YBP) - የተባባሩት ቤሄራዊ ፔትሮሊየም',
     description:
-      'Full-stack website for a petroleum company in Bale Robe, with service pages and a responsive design. Built with Next.js, React, TypeScript, and Tailwind CSS.',
+      'A full-stack corporate website developed for a petroleum company in Bale Robe. It presents the company’s services and professional identity through a clean, responsive interface.',
+    technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
     status: 'Completed',
     githubUrl: 'https://github.com/mohe-12/ybp-website-mohe',
     liveUrl: 'https://ybp-website-mohe.vercel.app/',
@@ -30,7 +32,8 @@ export const projects: Project[] = [
     number: '02',
     title: 'Employee Management System',
     description:
-      'Full-stack system for Bule Hora University to manage staff records and roles. Built with the MERN stack, TypeScript, and Tailwind CSS.',
+      'A full-stack web application being developed for Bule Hora University to centralize the management of staff records and user roles. It is built with the MERN stack and features a responsive design, user authentication, and role-based access control.',
+    technologies: ['MongoDB', 'Express.js', 'React', 'Node.js', 'TypeScript', 'Tailwind CSS'],
     status: 'In Progress',
     githubUrl: null,
     liveUrl: null,
@@ -43,7 +46,8 @@ export const projects: Project[] = [
     number: '03',
     title: 'Personal Portfolio',
     description:
-      'Responsive portfolio showcasing my projects, skills, and resume. Built with React, Next.js, TypeScript, Tailwind CSS, and Framer Motion.',
+      'A responsive personal portfolio website that presents my projects, technical skills, and professional resume to employers and clients. It is built with Next.js, TypeScript, Tailwind CSS, and Framer Motion for smooth animations.',
+    technologies: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
     status: 'Completed',
     githubUrl: 'https://github.com/mohe-12/mohammed-personal-portfolio',
     liveUrl: 'https://mohammed-personal-portfolio.vercel.app/',
@@ -56,7 +60,8 @@ export const projects: Project[] = [
     number: '04',
     title: 'MoziBlog',
     description:
-      'Full-stack blog platform with articles on technology, sports, and business. Built with Next.js, Tailwind CSS, Laravel, and MySQL.',
+      'A full-stack blog platform that publishes articles across technology, sports, and business. It combines a modern Next.js frontend with a Laravel backend and a MySQL database.',
+    technologies: ['Next.js', 'Tailwind CSS', 'Laravel', 'MySQL'],
     status: 'In Progress',
     githubUrl: null,
     liveUrl: null,

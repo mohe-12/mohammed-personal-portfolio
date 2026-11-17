@@ -17,7 +17,6 @@ import { SiTelegram } from 'react-icons/si';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
 import { Section, SectionHeader } from '@/components/section';
 import { Card } from '@/components/ui/card';
 import { siteConfig } from '@/data/site-config';
@@ -341,22 +340,30 @@ export function Contact() {
                     variants={contactStagger}
                   >
                     <motion.div className="min-w-0 space-y-2" variants={contactItem}>
-                      <Label htmlFor="name" className="text-base font-semibold">
-                        Full Name
-                      </Label>
-                      <Input
-                        id="name"
-                        type="text"
-                        autoComplete="name"
-                        maxLength={100}
-                        placeholder="Enter your full name"
-                        value={values.name}
-                        onChange={handleChange('name')}
-                        aria-invalid={!!errors.name}
-                        aria-describedby={errors.name ? 'name-error' : undefined}
-                        className={`h-14 rounded-2xl ${errors.name ? 'border-destructive' : ''}`}
-                        disabled={status === 'submitting'}
-                      />
+                      <label className="block space-y-2">
+                        <span className="text-base font-semibold text-gray-700 dark:text-gray-200 after:ml-0.5 after:text-red-500 after:content-['*']">
+                          Full Name
+                        </span>
+                        <Input
+                          id="name"
+                          name="name"
+                          type="text"
+                          autoComplete="name"
+                          maxLength={100}
+                          placeholder="Enter your full name"
+                          value={values.name}
+                          onChange={handleChange('name')}
+                          aria-invalid={!!errors.name}
+                          aria-describedby={errors.name ? 'name-error' : undefined}
+                          required
+                          className={`h-12 rounded-md border-input/50 transition-colors focus-visible:ring-0 focus-visible:ring-offset-0 ${
+                            errors.name
+                              ? 'border-destructive focus-visible:border-destructive'
+                              : 'hover:border-primary/60 focus-visible:border-primary'
+                          }`}
+                          disabled={status === 'submitting'}
+                        />
+                      </label>
                       {errors.name && (
                         <p id="name-error" role="alert" className="text-xs text-destructive">
                           {errors.name}
@@ -365,22 +372,30 @@ export function Contact() {
                     </motion.div>
 
                     <motion.div className="min-w-0 space-y-2" variants={contactItem}>
-                      <Label htmlFor="email" className="text-base font-semibold">
-                        Email
-                      </Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        autoComplete="email"
-                        maxLength={150}
-                        placeholder="you@gmail.com"
-                        value={values.email}
-                        onChange={handleChange('email')}
-                        aria-invalid={!!errors.email}
-                        aria-describedby={errors.email ? 'email-error' : undefined}
-                        className={`h-14 rounded-2xl ${errors.email ? 'border-destructive' : ''}`}
-                        disabled={status === 'submitting'}
-                      />
+                      <label className="block space-y-2">
+                        <span className="text-base font-semibold text-gray-700 dark:text-gray-200 after:ml-0.5 after:text-red-500 after:content-['*']">
+                          Email
+                        </span>
+                        <Input
+                          id="email"
+                          name="email"
+                          type="email"
+                          autoComplete="email"
+                          maxLength={150}
+                          placeholder="you@example.com"
+                          value={values.email}
+                          onChange={handleChange('email')}
+                          aria-invalid={!!errors.email}
+                          aria-describedby={errors.email ? 'email-error' : undefined}
+                          required
+                          className={`h-12 rounded-md border-input/50 transition-colors focus-visible:ring-0 focus-visible:ring-offset-0 ${
+                            errors.email
+                              ? 'border-destructive focus-visible:border-destructive'
+                              : 'hover:border-primary/60 focus-visible:border-primary'
+                          }`}
+                          disabled={status === 'submitting'}
+                        />
+                      </label>
                       {errors.email && (
                         <p id="email-error" role="alert" className="text-xs text-destructive">
                           {errors.email}
@@ -390,21 +405,29 @@ export function Contact() {
                   </motion.div>
 
                   <motion.div className="space-y-2" variants={contactItem}>
-                    <Label htmlFor="subject" className="text-base font-semibold">
-                      Subject
-                    </Label>
-                    <Input
-                      id="subject"
-                      type="text"
-                      maxLength={150}
-                      placeholder="What's this about?"
-                      value={values.subject}
-                      onChange={handleChange('subject')}
-                      aria-invalid={!!errors.subject}
-                      aria-describedby={errors.subject ? 'subject-error' : undefined}
-                      className={`h-14 rounded-2xl ${errors.subject ? 'border-destructive' : ''}`}
-                      disabled={status === 'submitting'}
-                    />
+                    <label className="block space-y-2">
+                      <span className="text-base font-semibold text-gray-700 dark:text-gray-200 after:ml-0.5 after:text-red-500 after:content-['*']">
+                        Subject
+                      </span>
+                      <Input
+                        id="subject"
+                        name="subject"
+                        type="text"
+                        maxLength={150}
+                        placeholder="What's this about?"
+                        value={values.subject}
+                        onChange={handleChange('subject')}
+                        aria-invalid={!!errors.subject}
+                        aria-describedby={errors.subject ? 'subject-error' : undefined}
+                        required
+                        className={`h-12 rounded-md border-input/50 transition-colors focus-visible:ring-0 focus-visible:ring-offset-0 ${
+                          errors.subject
+                            ? 'border-destructive focus-visible:border-destructive'
+                            : 'hover:border-primary/60 focus-visible:border-primary'
+                        }`}
+                        disabled={status === 'submitting'}
+                      />
+                    </label>
                     {errors.subject && (
                       <p id="subject-error" role="alert" className="text-xs text-destructive">
                         {errors.subject}
@@ -413,26 +436,34 @@ export function Contact() {
                   </motion.div>
 
                   <motion.div className="space-y-2" variants={contactItem}>
-                    <div className="flex items-center justify-between gap-3">
-                      <Label htmlFor="message" className="text-base font-semibold">
-                        Message
-                      </Label>
-                      <span className="text-sm text-muted-foreground">
-                        {values.message.length} / 2000
-                      </span>
-                    </div>
-                    <Textarea
-                      id="message"
-                      placeholder="Tell me a bit more..."
-                      rows={5}
-                      maxLength={2000}
-                      value={values.message}
-                      onChange={handleChange('message')}
-                      aria-invalid={!!errors.message}
-                      aria-describedby={errors.message ? 'message-error' : undefined}
-                      className={`min-h-40 resize-y rounded-2xl ${errors.message ? 'border-destructive' : ''}`}
-                      disabled={status === 'submitting'}
-                    />
+                    <label className="block space-y-2">
+                      <div className="flex items-center justify-between gap-3">
+                        <span className="text-base font-semibold text-gray-700 dark:text-gray-200 after:ml-0.5 after:text-red-500 after:content-['*']">
+                          Message
+                        </span>
+                        <span className="text-sm text-muted-foreground">
+                          {values.message.length} / 2000
+                        </span>
+                      </div>
+                      <Textarea
+                        id="message"
+                        name="message"
+                        placeholder="Tell me a bit more..."
+                        rows={5}
+                        maxLength={2000}
+                        value={values.message}
+                        onChange={handleChange('message')}
+                        aria-invalid={!!errors.message}
+                        aria-describedby={errors.message ? 'message-error' : undefined}
+                        required
+                        className={`min-h-40 resize-y rounded-md border-input/50 transition-colors focus-visible:ring-0 focus-visible:ring-offset-0 ${
+                          errors.message
+                            ? 'border-destructive focus-visible:border-destructive'
+                            : 'hover:border-primary/60 focus-visible:border-primary'
+                        }`}
+                        disabled={status === 'submitting'}
+                      />
+                    </label>
                     {errors.message && (
                       <p id="message-error" role="alert" className="text-xs text-destructive">
                         {errors.message}
