@@ -70,7 +70,7 @@ export function Footer() {
             &copy; {year} {siteConfig.name}. All rights reserved.
           </p>
           <p className="text-center sm:text-right">
-            Built with Next.js, TypeScript &amp; Tailwind CSS
+            Built By M-Tech
           </p>
         </div>
       </div>
