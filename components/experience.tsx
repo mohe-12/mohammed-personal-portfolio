@@ -86,7 +86,7 @@ export function EducationCard() {
                   className="h-full w-full object-cover"
                 />
               </div>
-              <h3 className="text-xl font-bold">Education</h3>
+              <h3 className="text-xl font-bold">Educational Background</h3>
             </div>
 
             <h4 className="text-lg font-bold leading-snug">
