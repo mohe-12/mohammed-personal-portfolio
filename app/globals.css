@@ -163,12 +163,6 @@
     background-clip: padding-box;
   }
 
-  .overview-card-decoration {
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-  }
-
   .overview-card-grid > * {
     position: relative;
   }
@@ -185,31 +179,7 @@
     }
   }
 
-  .overview-card-decoration::before {
-    content: '';
-    position: absolute;
-    top: -2.5rem;
-    right: -2.5rem;
-    z-index: 0;
-    width: 8rem;
-    height: 8rem;
-    border-radius: 9999px;
-    background: radial-gradient(
-      circle,
-      hsl(var(--primary) / 0.1),
-      hsl(var(--accent) / 0.04) 45%,
-      transparent 72%
-    );
-    pointer-events: none;
-  }
-
-  .overview-card-decoration > * {
-    position: relative;
-    z-index: 1;
-  }
-
-  .skills-card-glow::after,
-  .overview-card-glow::after {
+  .skills-card-glow::after {
     content: '';
     position: absolute;
     top: 0;
@@ -233,8 +203,7 @@
       box-shadow 200ms ease;
   }
 
-  .skills-card-glow:hover::after,
-  .overview-card-glow:hover::after {
+  .skills-card-glow:hover::after {
     box-shadow: 0 0 18px hsl(var(--primary) / 0.65);
     opacity: 1;
   }

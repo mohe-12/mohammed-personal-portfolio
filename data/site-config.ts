@@ -12,7 +12,7 @@ export const siteConfig = {
     graduationYear: '2026',
   },
   resumePath: '/resume/Mohammed_Hasen_CV.pdf',
-  profileImagePath: '/images/profile.png',
+  profileImagePath: 'https://i.postimg.cc/bNvykpDS/profile.png',
   url: 'https://mohammedhasen.vercel.app',
 } as const;
 

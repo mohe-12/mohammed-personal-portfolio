@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: '/images/profile.png',
+    icon: 'https://i.postimg.cc/bNvykpDS/profile.png',
   },
 };
 
