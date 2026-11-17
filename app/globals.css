@@ -180,14 +180,7 @@
       top: 50%;
       right: -1.25rem;
       width: 1.25rem;
-      height: 2px;
-      transform: translateY(-50%);
-      background: radial-gradient(
-          circle,
-          hsl(var(--muted-foreground) / 0.55) 1px,
-          transparent 1.25px
-        )
-        left center / 6px 2px repeat-x;
+      border-top: 1px dotted hsl(var(--border) / 0.9);
       pointer-events: none;
     }
   }

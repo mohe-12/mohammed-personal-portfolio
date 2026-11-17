@@ -1,0 +1,75 @@
+# Mobile Performance Audit
+
+**Audit date:** 2026-11-17  
+**Target:** <https://mohammed-personal-portfolio.vercel.app/>  
+**Reported baseline:** PageSpeed Insights mobile performance score of 68/100, supplied by the site owner.  
+**Scope:** Read-only review of the existing portfolio and its deployed page. No source, configuration, or dependency changes were made as part of this audit. Uncommitted edits were detected in `app/globals.css`, `package.json`, and `package-lock.json`; their author and intent are unknown. The production build and local mobile checks were rerun after those edits. A later text-only heading edit in `components/experience.tsx` appeared after the build; it was not included in the reported build output and is not expected to materially affect performance.
+
+## Executive summary
+
+The reported score of 68 could not be reproduced as a Lighthouse result during this audit. Lighthouse and Lighthouse CI are not installed, and the PageSpeed Insights API returned HTTP 429 because its daily project quota is exhausted. No Lighthouse score or Core Web Vitals value should therefore be inferred from this report.
+
+The strongest confirmed mobile optimization opportunity is the eagerly loaded, 1,818,197-byte profile PNG. It is rendered in the hero through a plain `<img>` at every viewport. The site's production assets also contain multiple client-side JavaScript chunks: the current isolated production build produced 838,980 bytes of static JavaScript and 60,540 bytes of static CSS before transfer compression. Several above-the-fold and below-the-fold sections use Framer Motion and client-side state, so the shipped/hydrated JavaScript is a second area to investigate after image delivery.
+
+The project already uses `next/font` with `display: 'swap'`, and project preview images use native lazy loading. Layouts were checked at common mobile, tablet, and desktop viewport widths with no horizontal overflow. These are positive findings, but they do not establish good mobile Core Web Vitals.
+
+The highest-value first steps are to optimize and correctly size the hero portrait, then establish a repeatable throttled Lighthouse baseline before reducing client JavaScript or changing animation behavior. A score of 90+ is a goal, not a result this audit can guarantee.
+
+## Architecture overview
+
+| Area | Current implementation |
+|---|---|
+| Framework | Next.js `^16.4.2` (current installed/lockfile version 16.4.6), TypeScript, React/React DOM 18.2.0 |
+| Entry and page composition | App Router root layout in [`app/layout.tsx`](../app/layout.tsx); a server page in [`app/page.tsx`](../app/page.tsx) composes the portfolio sections. |
+| Client-side UI | Navbar, hero, sections, overview cards, projects, skills, contact, theme, cursor tilt, and technology orbit contain client components, animation, interaction, or state. |
+| Styling | Tailwind CSS and [`app/globals.css`](../app/globals.css); `next/font/google` loads Geist as a self-hosted Next.js font asset with `display: 'swap'`. |
+| Images | Local profile PNG, education JPEG, and resume under `public/`; project preview images are hosted on `i.postimg.cc`. |
+| Animation | Framer Motion is used throughout; the technology orbit rotates continuously. The root `MotionConfig` sets `reducedMotion="never"`. |
+| Third parties | Project preview image host is requested when lazy images load. EmailJS is called only after contact form submission; no evidence showed it loading as a page-start script. |
+| Deployment configuration | The requested deployment is Vercel. The repository also contains a `netlify.toml` with a Netlify Next.js plugin; confirm whether it is intentionally retained for another deployment target. |
+
+## Findings
+
+Severity describes the likely performance importance, not proof that an item caused the supplied score.
+
+| ID | Severity | Finding and evidence | Affected files | Recommended solution | Expected impact | Complexity |
+|---|---|---|---|---|---|---|
+| P1 | **High** | **Large eager hero image.** `public/images/profile.png` is 1,818,197 bytes and 1254×1254. The orbit renders it with a plain eager `<img>` and no responsive source selection. This is a confirmed, above-the-fold payload; whether it is the actual LCP element was not captured. | [`public/images/profile.png`](../public/images/profile.png), [`components/technology-orbit.tsx`](../components/technology-orbit.tsx), [`next.config.js`](../next.config.js) | Create visually equivalent AVIF/WebP derivatives at display-appropriate widths. Render a responsive image using Next.js image optimization or explicit `srcSet`/`sizes`; reserve the existing square space and keep the hero image eager/high priority only if Lighthouse confirms it is the LCP candidate. Compare image bytes and LCP before/after. | High potential for transfer reduction; may improve LCP if the portrait is the LCP image or competes for bandwidth. | Low–medium |
+| P2 | **High** | **Substantial client JavaScript for a single-page portfolio.** The current isolated production build emitted 838,980 bytes of JavaScript and 60,540 bytes of CSS across static chunks (uncompressed file sizes). A current-state production browser inspection at a 390 CSS-pixel viewport observed six page JS resources totaling about 220 KB encoded and one Geist WOFF2 resource of about 29.3 KB encoded. The local browser run had no network or CPU throttling. | [`app/page.tsx`](../app/page.tsx), [`components/hero.tsx`](../components/hero.tsx), [`components/section.tsx`](../components/section.tsx), [`components/contact.tsx`](../components/contact.tsx), [`components/projects.tsx`](../components/projects.tsx), [`components/skills.tsx`](../components/skills.tsx) | Use the production bundle analyzer and Lighthouse unused-JS/boot-up-time diagnostics to identify actual expensive modules. Keep static copy and presentation in Server Components where possible; isolate only necessary interactive/animated controls as client boundaries. Consider loading non-critical interactive code when needed rather than hydrating all sections at initial load. Preserve server-rendered content and interactions. | Medium–high potential for JS transfer, parse/execute, hydration, and TBT improvements; the actual contribution to the supplied score needs profiling. | Medium–high |
+| P3 | **Medium** | **Continuous animation and forced motion behavior.** The technology orbit runs two infinite Framer Motion rotations; the hero typewriter updates React state repeatedly. The root layout sets `reducedMotion="never"`, so it does not honor the user's reduced-motion preference. These are confirmed animation behaviors; their CPU cost on a representative phone was not measured. | [`components/technology-orbit.tsx`](../components/technology-orbit.tsx), [`components/hero.tsx`](../components/hero.tsx), [`app/layout.tsx`](../app/layout.tsx) | Respect `prefers-reduced-motion`; reduce or pause nonessential continuous animation on small/touch devices if profiling shows a benefit. Prefer compositor-friendly transforms and avoid restarting animations during unrelated renders. Retain the current visual treatment when motion is allowed. | Potential reduction in main-thread/compositing work and power use; may help responsiveness, but no direct score change is established. | Low–medium |
+| P4 | **Medium** | **Project previews rely on an external image host.** Three project preview URLs point to `i.postimg.cc`. They use `loading="lazy"` and `decoding="async"`, which is appropriate for below-the-fold content, but image dimensions/bytes are controlled by an external service and depend on another origin. | [`data/projects.ts`](../data/projects.ts), [`components/projects.tsx`](../components/projects.tsx) | Measure actual image transfer sizes and response/cache headers. If material, create optimized responsive variants or use a reliable image CDN with explicit dimensions. Keep non-hero previews lazy and do not preload them. | Can reduce bytes and improve reliability/scrolling responsiveness if those images are large or slow; low initial LCP impact because they are lazy. | Low–medium |
+| P5 | **Low** | **Image optimization is disabled globally.** [`next.config.js`](../next.config.js) sets `images.unoptimized: true`. This disables Next.js image optimization for the `next/image` education image; the hero and project previews use plain `<img>` elements regardless. | [`next.config.js`](../next.config.js), [`components/experience.tsx`](../components/experience.tsx), [`components/technology-orbit.tsx`](../components/technology-orbit.tsx), [`components/projects.tsx`](../components/projects.tsx) | Reassess the global setting as part of the hero-image work. If using the Next.js optimizer on Vercel, verify optimized variants, cache behavior, and cost/plan limits; otherwise serve pre-generated responsive formats. | Enables responsive format/size delivery where supported; benefit depends on which images use the optimizer and deployment configuration. | Low |
+| P6 | **Low** | **Font is already locally served, but still contributes an initial resource.** The production page loaded one self-hosted Geist WOFF2 (about 29.3 KB encoded in the browser sample). The code uses one font family/subset and `display: 'swap'`; no separate Google Fonts runtime request was observed. | [`app/layout.tsx`](../app/layout.tsx) | Keep the current single subset and swap behavior. Only consider further reducing font data if Lighthouse identifies font loading as a bottleneck; compare typography before removing glyph coverage. | Likely small; current implementation already avoids runtime Google Fonts dependency and font-display blocking. | Low |
+| P7 | **Low** | **Many declared packages do not imply all are shipped.** `package.json` declares 60 dependencies, including a broad Radix UI set. Production artifacts and the observed page payload are measurable, but a package being declared does not prove its code is in the route bundle. | [`package.json`](../package.json), [`package-lock.json`](../package-lock.json), `components/ui/` | Use a production bundle analyzer and import/usage report before removing or replacing packages. Remove only dependencies proven unused across the repository; avoid broad dependency removal as a proxy for route-level optimization. | Potentially smaller build/install surface; initial page impact only if unused code is actually bundled. | Medium |
+
+## Core Web Vitals and lab/field data
+
+| Metric | Audit result | Interpretation |
+|---|---|---|
+| PageSpeed mobile score | **68/100, owner-reported; not independently reproduced.** | The PSI API returned HTTP 429 due to exhausted daily quota. |
+| LCP | **1,196 ms in one local production-preview browser run** at 390 CSS px / DPR ~1, without network or CPU throttling. | This is not a Lighthouse or field measurement; the LCP element was not captured. The hero portrait is a large eager image, but whether it was the LCP candidate remains unconfirmed. |
+| INP | **Unavailable.** | Requires field interaction data (CrUX/RUM) or an interaction-based lab proxy; no field data was provided. |
+| CLS | **0.0007 in the same single local production-preview run.** | Not a Lighthouse/field result; repeat under mobile throttling and investigate any movement around image/font rendering. |
+| FCP | **180 ms in the same single local production-preview run.** | This unthrottled localhost value is not representative of a mobile network. Confirm in Lighthouse. |
+| TBT | **Unavailable.** | Requires a Lighthouse trace or equivalent main-thread long-task measurement under mobile CPU throttling. |
+| Speed Index | **Unavailable.** | Requires Lighthouse visual-progress analysis under throttled conditions. |
+
+**Browser checks, not Lighthouse lab results:** A production build served from localhost was inspected at a 390 CSS-pixel viewport (DPR approximately 1). One run observed FCP 180 ms, LCP 1,196 ms, and CLS 0.0007, with six JS resources totaling about 220 KB encoded and one CSS resource about 11.4 KB encoded. No network/CPU throttling was applied. A separate deployed-page layout check at 320, 375, 390, 768, 1024, 1280, and 1440 CSS pixels found no horizontal overflow. The profile PNG loaded eagerly. These checks do not substitute for Lighthouse mobile lab data or CrUX field data.
+
+**Production build evidence:** `next build` completed successfully in an isolated copy using the current installed Next.js 16.4.6, PostCSS 8.5.33, and Zod 4.6.7 dependencies. The static chunk sizes above are uncompressed build-file sizes, not a Lighthouse transfer-size metric. The build emitted a warning that Next.js 16 deprecates React 18 support and will remove it in Next.js 17; treat framework compatibility as maintenance work, not a confirmed cause of the score. A workspace-root warning was also emitted because the isolated audit copy sits beside the repository lockfile; it is an audit setup artifact, not proof of a production build problem.
+
+## Prioritized optimization roadmap
+
+1. **Establish a repeatable baseline before changing behavior.** Run PageSpeed Insights or Lighthouse against the deployed URL with mobile emulation, cold cache, and throttled network/CPU. Save the report/trace and record LCP element, LCP subparts, TBT, CLS, FCP, Speed Index, transfer sizes, and warnings. Compare multiple runs rather than relying on one score.
+2. **Optimize the hero portrait first.** Generate responsive AVIF/WebP sizes, preserve the square layout, and test the actual LCP candidate. Do not lazy-load the LCP image; only add explicit priority/preload when trace evidence supports it.
+3. **Reduce initial client work based on bundle and trace evidence.** Focus on the client component boundaries and Framer Motion imports on the first route. Move static presentation to server-rendered components where practical and keep interactions isolated. Re-measure JS bytes, TBT, and hydration/boot-up cost.
+4. **Tune animation for mobile and user preference.** Respect reduced motion, then profile the orbit and typewriter on a mobile CPU throttle. Avoid removing animation or changing visual design without measuring.
+5. **Optimize below-the-fold project imagery.** Keep lazy loading; compare real image bytes, formats, and cache headers. Prefer sized responsive assets and dependable hosting if external image delivery is material.
+6. **Re-run and verify the target.** Compare median results from at least three production Lighthouse runs and check mobile field data in CrUX/Search Console after deployment. A 90+ score is not guaranteed because it varies with the deployment, device profile, network, and Lighthouse version.
+
+## Validation still required
+
+- A fresh Lighthouse mobile report/trace or PSI report once its quota is available.
+- Representative physical-device or throttled-browser testing for LCP, INP/RUM, CLS, FCP, TBT, and Speed Index.
+- Image-host response size and caching measurements for all project preview images.
+- Post-change comparison of visual quality, LCP image behavior, and Vercel image-optimization delivery if the implementation phase is approved.
