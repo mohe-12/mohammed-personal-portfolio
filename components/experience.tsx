@@ -18,12 +18,18 @@ export function ExperienceCard() {
     >
       <CursorTilt>
         <Card className="h-full border-border/60 transition-all hover:border-primary/40 hover:shadow-lg">
-          <CardContent className="p-6">
-            <div className="mb-5 flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+          <CardContent className="min-w-0 p-4 sm:p-6">
+            <div className="mb-5 flex min-w-0 items-center gap-3">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
                 <BriefcaseBusiness className="h-5 w-5" aria-hidden="true" />
               </div>
-              <h3 className="text-xl font-bold">Work Experience</h3>
+              <h3 className="min-w-0 text-lg font-bold leading-tight sm:text-xl">
+                Work Experience
+              </h3>
+              <span
+                aria-hidden="true"
+                className="h-px min-w-3 flex-1 bg-gradient-to-r from-border via-border/70 to-transparent"
+              />
             </div>
 
             <div className="grid gap-5">
@@ -33,11 +39,11 @@ export function ExperienceCard() {
                   className="relative pl-6"
                 >
                   <span className="absolute left-0 top-2 h-2.5 w-2.5 rounded-full bg-primary" />
-                  <h4 className="text-base font-bold">{experience.role}</h4>
-                  <p className="mt-2 text-sm font-medium uppercase tracking-wide text-primary">
+                  <h4 className="break-words text-base font-bold">{experience.role}</h4>
+                  <p className="mt-2 break-words text-sm font-medium uppercase tracking-wide text-primary">
                     {experience.startDate} – {experience.endDate}
                   </p>
-                  <p className="mt-3 text-sm text-muted-foreground">
+                  <p className="mt-3 break-words text-sm text-muted-foreground">
                     {experience.organization}
                   </p>
                 </div>
@@ -48,11 +54,10 @@ export function ExperienceCard() {
               <h4 className="text-base font-bold text-primary">
                 Open to Opportunities
               </h4>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                I&apos;m a recent Computer Science and Engineering graduate looking for
-                roles in software development, IT, information systems, and AI-related
-                fields, where I can contribute to real-world projects and keep growing my
-                technical skills.
+              <p className="mt-3 break-words text-sm leading-relaxed text-muted-foreground">
+                I’m seeking software development and IT roles, as well as freelance projects,
+                where I can build practical web applications and contribute to real-world teams.
+                Available to start immediately and open to on-site or remote work.
               </p>
             </div>
           </CardContent>
@@ -74,28 +79,30 @@ export function EducationCard() {
     >
       <CursorTilt>
         <Card className="h-full border-border/60 transition-all hover:border-primary/40 hover:shadow-lg">
-          <CardContent className="p-6">
-            <div className="mb-5 flex items-center gap-3">
+          <CardContent className="min-w-0 p-4 sm:p-6">
+            <div className="mb-5 flex min-w-0 items-center gap-3">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
                 <GraduationCap className="h-5 w-5" aria-hidden="true" />
               </div>
-              <h3 className="text-xl font-bold">Educational Background</h3>
+              <h3 className="min-w-0 text-base font-bold leading-tight sm:text-lg lg:text-xl">
+                Educational Background
+              </h3>
+              <span
+                aria-hidden="true"
+                className="h-px min-w-3 flex-1 bg-gradient-to-r from-border via-border/70 to-transparent"
+              />
             </div>
 
-            <h4 className="text-lg font-bold leading-snug">
+            <h4 className="break-words text-base font-bold leading-snug">
               {education.degree}
             </h4>
-            <p className="mt-1 text-sm font-medium text-primary">
+            <p className="mt-1 break-words text-sm font-medium text-primary">
               {education.institution}
             </p>
             <div className="mt-4 flex flex-wrap gap-3 text-sm text-muted-foreground">
               <span className="inline-flex items-center gap-1.5">
                 <Calendar className="h-4 w-4" aria-hidden="true" />
-                Graduation {education.year}
-              </span>
-              <span className="inline-flex items-center gap-1.5">
-                <MapPin className="h-4 w-4" aria-hidden="true" />
-                Bule Hora, Ethiopia
+                Graduated {education.year} · CGPA 3.51 / 4.00
               </span>
             </div>
           </CardContent>
