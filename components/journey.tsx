@@ -67,7 +67,7 @@ export function Journey() {
             }`}
           />
           <div className="col-start-2 min-w-0 md:col-start-2">
-            <p className="mb-3 inline-flex rounded-full border border-accent/25 bg-background/80 px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-accent">
+            <p className="mb-3 inline-flex max-w-full rounded-full border border-accent/25 bg-background/80 px-2 py-1 text-[10px] font-bold uppercase tracking-[0.08em] text-accent sm:px-3 sm:text-xs sm:tracking-[0.14em]">
               2026 · Education
             </p>
             <EducationCard />

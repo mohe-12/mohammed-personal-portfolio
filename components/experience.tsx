@@ -26,10 +26,6 @@ export function ExperienceCard() {
               <h3 className="min-w-0 text-lg font-bold leading-tight sm:text-xl">
                 Work Experience
               </h3>
-              <span
-                aria-hidden="true"
-                className="h-px min-w-3 flex-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-500"
-              />
             </div>
 
             <div className="grid gap-5">
@@ -43,7 +39,7 @@ export function ExperienceCard() {
                     {experience.role}
                   </h4>
                   <span className="mt-3 inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
-                    <Calendar className="h-3.5 w-3.5" aria-hidden="true" />
+                    
                     {experience.startDate} – {experience.endDate}
                   </span>
                   <p className="mt-3 flex items-start gap-2 break-words text-sm leading-relaxed text-muted-foreground">
@@ -91,10 +87,6 @@ export function EducationCard() {
               <h3 className="min-w-0 text-base font-bold leading-tight sm:text-lg lg:text-xl">
                 Educational Background
               </h3>
-              <span
-                aria-hidden="true"
-                className="h-px min-w-3 flex-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-500"
-              />
             </div>
 
             <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">

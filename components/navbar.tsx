@@ -103,15 +103,24 @@ export function Navbar() {
         <a
           href="#home"
           onClick={handleNav}
-          className="group flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap text-sm font-extrabold tracking-tight transition-opacity hover:opacity-90 sm:text-lg"
+          className="group flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap font-heading text-sm font-semibold tracking-tight transition-opacity hover:opacity-80 sm:text-lg"
           aria-label="Mohammed Hasen — home"
         >
-          <span className="text-foreground">Mohammed</span>
-          <span className="gradient-text">H</span>
           <span
-            className="ml-0.5 h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_10px_hsl(var(--accent)/0.65)] transition-transform duration-300 group-hover:scale-125"
+            className="font-mono text-xs font-medium text-primary/70 transition-colors group-hover:text-primary"
             aria-hidden="true"
-          />
+          >
+            &lt;
+          </span>
+          <span className="text-foreground">
+            Mohammed <span className="text-primary">H.</span>
+          </span>
+          <span
+            className="font-mono text-xs font-medium text-primary/70 transition-colors group-hover:text-primary"
+            aria-hidden="true"
+          >
+            /&gt;
+          </span>
         </a>
 
         <ul
