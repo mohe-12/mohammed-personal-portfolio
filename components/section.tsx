@@ -35,7 +35,7 @@ export function SectionHeader({
         <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-primary to-accent" />
         {eyebrow}
       </span>
-      <h2 className="font-heading text-3xl font-bold tracking-tight text-balance md:text-4xl lg:text-5xl">
+      <h2 className="font-heading text-2xl font-bold leading-tight tracking-tight text-balance sm:text-3xl sm:leading-10 md:text-4xl md:leading-tight lg:text-5xl">
         {title}
       </h2>
       {subtitle && (

@@ -97,7 +97,7 @@ export function EducationCard() {
               />
             </div>
 
-            <div className="grid gap-5 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
+            <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
               <div className="min-w-0 rounded-2xl border border-accent/10 bg-gradient-to-br from-accent/5 to-primary/5 p-4 sm:p-5">
                 <p className="text-xs font-bold uppercase tracking-[0.16em] text-accent">
                   Degree
@@ -110,7 +110,7 @@ export function EducationCard() {
                   <span className="min-w-0 break-words">{education.institution}</span>
                 </p>
               </div>
-              <div className="flex items-center justify-between gap-4 rounded-2xl border border-border/60 bg-background/70 p-4 sm:min-w-32 sm:flex-col sm:justify-center sm:gap-1">
+              <div className="flex items-center justify-between gap-4 rounded-2xl border border-border/60 bg-background/70 p-4 lg:min-w-32 lg:flex-col lg:justify-center lg:gap-1">
                 <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                   Graduated
                 </span>
