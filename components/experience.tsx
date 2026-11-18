@@ -48,10 +48,9 @@ export function ExperienceCard() {
                   </p>
                 </div>
               ))}
-            </div>
-
-            <div className="mt-6 rounded-2xl border border-primary/10 bg-gradient-to-br from-primary/5 to-accent/5 p-4 sm:p-5">
-              <h4 className="text-sm font-bold text-primary sm:text-base">
+              
+              <div className="relative ml-1 border-l border-primary/20 pb-1 pl-6">
+              <h4 className="border-t border-gray-200 pt-3 text-sm font-bold text-primary sm:text-base">
                 Open to opportunities
               </h4>
               <p className="mt-2 break-words text-sm leading-relaxed text-muted-foreground">
@@ -59,6 +58,7 @@ export function ExperienceCard() {
                 where I can build practical web applications and contribute to real-world teams.
                 Available to start immediately and open to on-site or remote work.
               </p>
+              </div>
             </div>
           </CardContent>
         </Card>
@@ -90,7 +90,7 @@ export function EducationCard() {
             </div>
 
             <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
-              <div className="min-w-0 rounded-2xl border border-accent/10 bg-gradient-to-br from-accent/5 to-primary/5 p-4 sm:p-5">
+              <div className="min-w-0 rounded-2xl border border-accent/10  p-4 sm:p-5">
                 <p className="text-xs font-bold uppercase tracking-[0.16em] text-accent">
                   Degree
                 </p>
