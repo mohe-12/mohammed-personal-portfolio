@@ -156,7 +156,7 @@ export function Navbar() {
           <Button
             asChild
             size="sm"
-            className="group hidden bg-gradient-to-r from-primary to-accent text-primary-foreground shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/25 lg:inline-flex"
+            className="group hidden bg-gradient-to-r from-primary to-accent text-primary-foreground shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/25 md:inline-flex"
           >
             <a href={siteConfig.resumePath} target="_blank" rel="noopener noreferrer">
               <motion.span

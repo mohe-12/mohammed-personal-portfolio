@@ -101,14 +101,16 @@ export function AboutCard() {
                     key={area.title}
                     whileHover={{ x: 4 }}
                     transition={{ type: 'spring', stiffness: 350, damping: 24 }}
-                    className="flex min-w-0 gap-4 rounded-2xl border border-border/60 bg-background/70 p-4 transition-colors hover:border-primary/30 sm:p-5"
+                    className="grid min-w-0 grid-cols-[2.5rem_minmax(0,1fr)] items-center gap-x-3 gap-y-2 rounded-2xl border border-border/60 bg-background/70 p-4 transition-colors hover:border-primary/30 sm:flex sm:items-start sm:gap-4 sm:p-5"
                   >
                     <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-muted text-primary">
                       <Icon className="h-5 w-5" aria-hidden="true" />
                     </span>
-                    <div className="min-w-0">
-                      <h3 className="text-sm font-bold sm:text-base">{area.title}</h3>
-                      <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                    <div className="contents sm:block sm:min-w-0">
+                      <h3 className="col-start-2 row-start-1 font-heading text-sm font-bold sm:text-base">
+                        {area.title}
+                      </h3>
+                      <p className="col-span-2 row-start-2 mt-0 text-sm leading-relaxed text-muted-foreground sm:mt-1.5">
                         {area.description}
                       </p>
                     </div>

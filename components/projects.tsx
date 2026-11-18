@@ -84,9 +84,9 @@ export function Projects() {
                       ))}
                     </ul>
 
-                    <div className="mt-auto flex flex-col justify-center gap-2 pt-5 sm:flex-row sm:flex-wrap">
+                    <div className="mt-auto flex flex-row flex-wrap justify-center gap-2 pt-5 sm:justify-start">
                       {project.githubUrl ? (
-                        <Button asChild size="sm" variant="outline" className="min-h-11 w-full sm:w-auto">
+                        <Button asChild size="sm" variant="outline" className="min-h-11">
                           <a
                             href={project.githubUrl}
                             target="_blank"
@@ -101,7 +101,7 @@ export function Projects() {
                         <Button
                           size="sm"
                           variant="outline"
-                          className="min-h-11 w-full sm:w-auto"
+                          className="min-h-11"
                           disabled
                           title="GitHub link coming soon"
                         >
@@ -111,7 +111,7 @@ export function Projects() {
                       )}
 
                       {project.liveUrl ? (
-                        <Button asChild size="sm" className="min-h-11 w-full sm:w-auto">
+                        <Button asChild size="sm" className="min-h-11">
                           <a
                             href={project.liveUrl}
                             target="_blank"
@@ -125,7 +125,7 @@ export function Projects() {
                       ) : (
                         <Button
                           size="sm"
-                          className="min-h-11 w-full sm:w-auto"
+                          className="min-h-11"
                           disabled
                           title="Live demo link coming soon"
                         >
