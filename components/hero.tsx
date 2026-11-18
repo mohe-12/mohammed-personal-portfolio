@@ -73,7 +73,7 @@ export function Hero() {
       <div className="absolute left-1/4 top-1/4 -z-10 h-80 w-80 -translate-x-1/2 rounded-full bg-primary/20 blur-[100px] dark:bg-indigo-500/20" />
       <div className="absolute right-[8%] top-1/2 -z-10 h-80 w-80 -translate-y-1/2 rounded-full bg-primary/10 blur-[140px] dark:bg-accent/15" />
 
-      <div className="mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-2 lg:gap-6">
+      <div className="mx-auto grid w-full max-w-6xl items-center gap-8 lg:grid-cols-2 lg:gap-6">
         {/* Left: text content */}
         <motion.div
           variants={container}
@@ -118,9 +118,9 @@ export function Hero() {
           {/* Buttons */}
           <motion.div
             variants={item}
-            className="mt-8 flex flex-row items-center justify-center gap-2 sm:justify-start sm:gap-3 lg:items-start"
+            className="mt-8 flex w-full flex-col items-center justify-center gap-2 sm:w-auto sm:flex-row sm:justify-start sm:gap-3 lg:items-start"
           >
-            <Button asChild size="lg" className="group min-w-0 flex-1 px-3 sm:flex-none sm:px-8">
+            <Button asChild size="lg" className="group w-full min-w-0 px-3 sm:w-auto sm:px-8">
               <motion.a
                 href="#projects"
                 whileHover={{ y: -3, scale: 1.03 }}
@@ -131,7 +131,7 @@ export function Hero() {
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </motion.a>
             </Button>
-            <Button asChild size="lg" variant="outline" className="min-w-0 flex-1 px-3 sm:flex-none sm:px-8">
+            <Button asChild size="lg" variant="outline" className="w-full min-w-0 px-3 sm:w-auto sm:px-8">
               <a href="#contact">
                 <Mail className="mr-2 h-4 w-4" />
                 Contact Me
@@ -181,7 +181,7 @@ export function Hero() {
       <motion.a
         href="#about"
         aria-label="Scroll to about section"
-        className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-1 text-muted-foreground md:flex"
+        className="absolute bottom-6 left-1/2 hidden min-h-11 -translate-x-1/2 flex-col items-center gap-1 text-muted-foreground md:flex"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, y: [0, 6, 0] }}
         transition={{

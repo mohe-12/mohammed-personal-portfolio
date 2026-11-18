@@ -123,9 +123,9 @@ export function HowIWork() {
 
               <Card className="group h-full border-border/70 bg-background shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md">
                 <CardContent className="flex h-full flex-col p-5 sm:p-6">
-                  <div className="flex items-center justify-between lg:justify-start">
+                  <div className="flex items-center gap-3 lg:block">
                     <span
-                      className={`flex h-10 w-10 items-center justify-center rounded-lg border transition-colors ${
+                      className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border transition-colors ${
                         isActive
                           ? 'border-primary/30 bg-primary/10 text-primary'
                           : 'border-border bg-muted/40 text-muted-foreground'
@@ -133,14 +133,17 @@ export function HowIWork() {
                     >
                       <Icon className="h-5 w-5" aria-hidden="true" />
                     </span>
-                    <span className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground lg:hidden">
+                    <h3 className="min-w-0 flex-1 text-left text-base font-semibold leading-snug text-foreground lg:mt-5">
+                      {step.title}
+                    </h3>
+                    <span className="ml-auto shrink-0 text-xs font-semibold tabular-nums text-muted-foreground sm:hidden">
+                      {step.number}
+                    </span>
+                    <span className="ml-auto hidden whitespace-nowrap text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground sm:inline lg:hidden">
                       Step {step.number}
                     </span>
                   </div>
 
-                  <h3 className="mt-5 text-left text-base font-semibold leading-snug text-foreground">
-                    {step.title}
-                  </h3>
                   <p className="mt-2 flex-1 text-left text-sm leading-relaxed text-muted-foreground">
                     {step.description}
                   </p>

@@ -50,7 +50,7 @@ export function Navbar() {
       }
     };
     const onResize = () => {
-      if (window.matchMedia('(min-width: 1024px)').matches) {
+      if (window.matchMedia('(min-width: 768px)').matches) {
         setMobileOpen(false);
       }
     };
@@ -103,7 +103,7 @@ export function Navbar() {
         <a
           href="#home"
           onClick={handleNav}
-          className="group flex shrink-0 items-center gap-1.5 whitespace-nowrap text-sm font-extrabold tracking-tight transition-opacity hover:opacity-90 sm:text-lg"
+          className="group flex min-h-11 shrink-0 items-center gap-1.5 whitespace-nowrap text-sm font-extrabold tracking-tight transition-opacity hover:opacity-90 sm:text-lg"
           aria-label="Mohammed Hasen — home"
         >
           <span className="text-foreground">Mohammed</span>
@@ -115,7 +115,7 @@ export function Navbar() {
         </a>
 
         <ul
-          className="hidden items-center gap-1 lg:flex"
+          className="hidden items-center gap-1 md:flex"
           onPointerLeave={() => setUnderlinedLink(null)}
         >
           {navLinks.map((link) => {
@@ -130,7 +130,7 @@ export function Navbar() {
                   onFocus={() => setUnderlinedLink(link.href)}
                   onBlur={() => setUnderlinedLink(null)}
                   className={cn(
-                    'relative rounded-xl px-3 py-2 text-sm font-medium transition-all duration-200',
+                    'relative flex min-h-11 items-center rounded-xl px-2 py-2 text-xs font-medium transition-all duration-200 lg:px-3 lg:text-sm',
                     active
                       ? 'text-foreground'
                       : 'text-muted-foreground hover:text-foreground',
@@ -173,7 +173,7 @@ export function Navbar() {
             ref={menuButtonRef}
             variant="ghost"
             size="icon"
-            className="h-11 w-11 lg:hidden"
+            className="h-11 w-11 md:hidden"
             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={mobileOpen}
             aria-controls="mobile-navigation"
@@ -203,7 +203,7 @@ export function Navbar() {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: 'easeInOut' }}
             id="mobile-navigation"
-            className="max-h-[calc(100vh-4rem)] overflow-y-auto overscroll-contain border-b border-border bg-background/95 glass supports-[height:100dvh]:max-h-[calc(100dvh-4rem)] lg:hidden"
+            className="max-h-[calc(100vh-4rem)] overflow-y-auto overscroll-contain border-b border-border bg-background/95 glass supports-[height:100dvh]:max-h-[calc(100dvh-4rem)] md:hidden"
           >
             <ul className="flex flex-col gap-1 px-4 py-4 sm:px-6">
               {navLinks.map((link) => {
