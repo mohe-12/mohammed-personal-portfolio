@@ -6,7 +6,7 @@ A premium, responsive personal portfolio built with Next.js, React, TypeScript, 
 
 - Sticky navigation with active-section highlighting and mobile menu
 - Hero with floating technology icons orbit
-- About, Skills, Featured Projects, Experience (timeline), and Education sections
+- About Me, Skills, Featured Projects, Education & Journey, How I Work, and Contact sections
 - Working contact form with validation, loading/success/error states, and spam honeypot
 - Contact form delivers messages to your inbox via EmailJS
 - Dark/light theme toggle (defaults to dark)

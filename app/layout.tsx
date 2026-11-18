@@ -1,11 +1,17 @@
 import type { Metadata } from 'next';
-import { Geist } from 'next/font/google';
+import { Geist, Ubuntu } from 'next/font/google';
 import { MotionConfig } from 'framer-motion';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { cn } from '@/lib/utils';
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-geist', display: 'swap' });
+const ubuntu = Ubuntu({
+  subsets: ['latin'],
+  variable: '--font-ubuntu',
+  weight: ['300', '400', '500', '700'],
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://mohammedhasen.vercel.app'),
@@ -32,7 +38,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://mohammedhasen.vercel.app',
+    url: 'https://mohammed-personal-portfolio.vercel.app/',
     title: 'Mohammed Hasen | Full-Stack Developer',
     description:
       'Full-Stack Developer specializing in responsive web applications and practical digital solutions.',
@@ -74,7 +80,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn(geist.variable, 'font-sans antialiased')}>
+      <body className={cn(geist.variable, ubuntu.variable, 'font-sans antialiased')}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

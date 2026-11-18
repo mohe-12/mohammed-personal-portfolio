@@ -63,11 +63,11 @@ export function Skills() {
           eyebrow="Skills"
           title={
             <>
-              <span className="text-foreground">Technical</span>
-              <span className="gradient-text"> Expertise</span>
+              <span className="text-foreground">Technical </span>
+              <span className="gradient-text"> toolkit</span>
             </>
           }
-          subtitle="Technologies and tools I have worked with."
+          subtitle="Technologies and tools I have worked with, grouped by area."
         />
         <motion.div
           className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"

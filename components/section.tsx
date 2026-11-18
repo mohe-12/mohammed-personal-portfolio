@@ -10,19 +10,21 @@ export function SectionHeader({
   subtitle,
   align = 'center',
   className,
+  replayOnScroll = false,
 }: {
   eyebrow: string;
   title: ReactNode;
   subtitle?: string;
   align?: 'center' | 'left';
   className?: string;
+  replayOnScroll?: boolean;
 }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
+      viewport={{ once: !replayOnScroll, margin: '-80px' }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className={cn(
         'mb-12 flex flex-col gap-3 md:mb-16',
         align === 'center' ? 'items-center text-center' : 'items-start text-left',
@@ -33,7 +35,7 @@ export function SectionHeader({
         <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-primary to-accent" />
         {eyebrow}
       </span>
-      <h2 className="text-3xl font-bold tracking-tight text-balance md:text-4xl lg:text-5xl">
+      <h2 className="font-heading text-3xl font-bold tracking-tight text-balance md:text-4xl lg:text-5xl">
         {title}
       </h2>
       {subtitle && (

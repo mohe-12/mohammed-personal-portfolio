@@ -183,11 +183,11 @@ export function Contact() {
           eyebrow="Let's connect"
           title={
             <>
-              <span className="text-foreground">Con</span>
-              <span className="gradient-text">tact</span>
+              <span className="text-foreground">Let&apos;s build something </span>
+              <span className="gradient-text">great</span>
             </>
           }
-          subtitle="Get in touch with me anytime."
+          subtitle="I'm open to software development, IT and AI-related roles, as well as freelance projects and collaborations."
         />
         <Card className="overflow-hidden border-border/60">
           <div className="grid min-w-0 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
@@ -199,14 +199,6 @@ export function Contact() {
               transition={{ duration: 0.5 }}
               className="flex min-w-0 flex-col justify-center space-y-7 p-6 sm:p-8 lg:justify-start lg:p-10 lg:pt-8"
             >
-              <div>
-                <h3 className="max-w-md text-3xl font-bold tracking-tight text-balance md:text-4xl">
-                  Let&apos;s build something great.
-                </h3>
-                <p className="mt-4 max-w-lg leading-relaxed text-muted-foreground">
-                  I&apos;m open to technology opportunities, including software development, IT, and AI-related roles, as well as freelance projects and collaborations.
-                </p>
-              </div>
 
               <motion.div
                 className="space-y-3"
@@ -270,11 +262,6 @@ export function Contact() {
                     );
                   })}
               </motion.div>
-
-              <p className="flex min-w-0 items-center gap-2 text-muted-foreground">
-                <MapPin className="h-5 w-5 shrink-0" aria-hidden="true" />
-                <span className="min-w-0 break-words">{siteConfig.location}</span>
-              </p>
             </motion.div>
 
             {/* Right column: form */}
@@ -325,15 +312,6 @@ export function Contact() {
                       onChange={(e) => setHoneypot(e.target.value)}
                     />
                   </div>
-
-                  <motion.div variants={contactItem}>
-                    <h3 className="gradient-text text-sm font-bold uppercase tracking-[0.2em]">
-                      Send a message
-                    </h3>
-                    <p className="mt-2 text-base leading-relaxed text-muted-foreground">
-                      Fill out the form below and I&apos;ll respond as soon as I can.
-                    </p>
-                  </motion.div>
 
                   <motion.div
                     className="grid min-w-0 gap-5 sm:grid-cols-2"

@@ -1,6 +1,5 @@
 import { Section, SectionHeader } from '@/components/section';
 import { AboutCard } from '@/components/about';
-import { EducationCard, ExperienceCard } from '@/components/experience';
 
 export function Overview() {
   return (
@@ -9,16 +8,13 @@ export function Overview() {
         eyebrow="About Me"
         title={
           <>
-            <span className="text-foreground">Over</span>
-            <span className="gradient-text">view</span>
+            <span className="text-foreground">Engineering fundamentals, </span>
+            <span className="gradient-text">practical results.</span>
           </>
         }
-        subtitle="Computer Science & Engineering Graduate | Full-Stack Web Developer"
       />
-      <div className="overview-card-grid grid items-stretch gap-5 lg:grid-cols-3">
+      <div className="mx-auto max-w-6xl">
         <AboutCard />
-        <ExperienceCard />
-        <EducationCard />
       </div>
     </Section>
   );

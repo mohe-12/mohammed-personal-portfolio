@@ -23,10 +23,10 @@ export function Projects() {
         title={
           <>
             <span className="text-foreground">Selected </span>
-            <span className="gradient-text">Projects</span>
+            <span className="gradient-text">Work</span>
           </>
         }
-        subtitle="A showcase of my work, highlighting my skills and experience in software development."
+        subtitle="Real projects I have built or am actively developing."
       />
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

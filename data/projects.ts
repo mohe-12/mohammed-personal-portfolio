@@ -32,7 +32,7 @@ export const projects: Project[] = [
     number: '02',
     title: 'Employee Management System',
     description:
-      'A full-stack web application being developed for Bule Hora University to centralize the management of staff records and user roles. It is built with the MERN stack and features a responsive design, user authentication, and role-based access control.',
+      'A full-stack web application being developed for Bule Hora University to centralize the management of staff records and user roles.',
     technologies: ['MongoDB', 'Express.js', 'React', 'Node.js', 'TypeScript', 'Tailwind CSS'],
     status: 'In Progress',
     githubUrl: null,
@@ -46,7 +46,7 @@ export const projects: Project[] = [
     number: '03',
     title: 'Personal Portfolio',
     description:
-      'A responsive personal portfolio website that presents my projects, technical skills, and professional resume to employers and clients. It is built with Next.js, TypeScript, Tailwind CSS, and Framer Motion for smooth animations.',
+      'A responsive personal portfolio website that presents my projects, technical skills, and professional resume to employers and clients.',
     technologies: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
     status: 'Completed',
     githubUrl: 'https://github.com/mohe-12/mohammed-personal-portfolio',
@@ -60,7 +60,7 @@ export const projects: Project[] = [
     number: '04',
     title: 'MoziBlog',
     description:
-      'A full-stack blog platform that publishes articles across technology, sports, and business. It combines a modern Next.js frontend with a Laravel backend and a MySQL database.',
+      'A full-stack blog platform publishing articles across technology, sports, and business, with a Next.js frontend and a Laravel backend.',
     technologies: ['Next.js', 'Tailwind CSS', 'Laravel', 'MySQL'],
     status: 'In Progress',
     githubUrl: null,
