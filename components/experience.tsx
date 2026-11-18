@@ -48,7 +48,7 @@ export function ExperienceCard() {
                   </span>
                   <p className="mt-3 flex items-start gap-2 break-words text-sm leading-relaxed text-muted-foreground">
                     <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary/70" aria-hidden="true" />
-                    {experience.organization}
+                    <span className="min-w-0 break-words">{experience.organization}</span>
                   </p>
                 </div>
               ))}
@@ -107,7 +107,7 @@ export function EducationCard() {
                 </h4>
                 <p className="mt-3 flex items-start gap-2 break-words text-sm leading-relaxed text-muted-foreground">
                   <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
-                  {education.institution}
+                  <span className="min-w-0 break-words">{education.institution}</span>
                 </p>
               </div>
               <div className="flex items-center justify-between gap-4 rounded-2xl border border-border/60 bg-background/70 p-4 sm:min-w-32 sm:flex-col sm:justify-center sm:gap-1">
