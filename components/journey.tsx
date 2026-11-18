@@ -47,7 +47,7 @@ export function Journey() {
             className="absolute left-4 top-5 z-10 h-3.5 w-3.5 -translate-x-1/2 rounded-full border-[3px] border-background bg-primary shadow-[0_0_0_4px_hsl(var(--primary)/0.12)] md:left-1/2"
           />
           <div className="col-start-2 min-w-0 md:col-start-1">
-            <p className="mb-3 inline-flex rounded-full border border-primary/20 bg-background/80 px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-primary md:float-right">
+            <p className="mb-3 inline-flex max-w-full rounded-full border border-primary/20 bg-background/80 px-2 py-1 text-[10px] font-bold uppercase tracking-[0.08em] text-primary sm:px-3 sm:text-xs sm:tracking-[0.14em] md:float-right">
               2025 · Professional experience
             </p>
             <div className="clear-both">

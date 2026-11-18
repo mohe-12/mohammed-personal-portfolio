@@ -57,7 +57,7 @@ export function AboutCard() {
                     Profile
                   </p>
                   <p className="mt-1 text-sm text-muted-foreground">
-                    Computer Science &amp; Engineering
+                    CSE @ BHU | Full-stack Web Developer
                   </p>
                 </div>
               </div>
