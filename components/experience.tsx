@@ -111,12 +111,6 @@ export function EducationCard() {
                 </span>
               </div>
             </div>
-            <div className="mt-4 flex flex-wrap gap-2">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/15 bg-accent/5 px-3 py-1.5 text-xs font-semibold text-foreground">
-                <Calendar className="h-3.5 w-3.5 text-accent" aria-hidden="true" />
-                CGPA 3.51 / 4.00
-              </span>
-            </div>
           </CardContent>
         </Card>
       </CursorTilt>
